@@ -6,6 +6,7 @@ import "./ScrollWrapper.css";
 import Projects from "./Projects.js";
 import About from "./About.js";
 import Resume from "./Resume.js";
+import { Flex, Button, Box } from "rebass";
 
 const ExampleOne = () => {
   //triggerOnce is another option, to trigger only once, default is false
@@ -43,7 +44,7 @@ const ExampleOne = () => {
   //animate changes the state of the element
   return (
     <div>
-      <div ref={firstRef} className="divOne">
+      <section ref={firstRef} className="divOne" id="home">
       <motion.div
           intial="end"
           animate={firstInView ? "start" : "end"}
@@ -56,9 +57,9 @@ const ExampleOne = () => {
             <Home/>
           </center>
         </motion.div>
-      </div>
+      </section>
 
-      <div ref={secondRef} className="divTwo">
+      <section ref={secondRef} className="divTwo" id="projects">
       <motion.div
           intial="end"
           animate={secondInView ? "start" : "end"}
@@ -71,8 +72,8 @@ const ExampleOne = () => {
             <Projects/>
           </center>
         </motion.div>
-      </div>
-      <div ref={thirdRef} className="divThree">
+      </section>
+      <section ref={thirdRef} className="divThree" id="about">
         <motion.div
           intial="end"
           animate={thirdInView ? "start" : "end"}
@@ -85,8 +86,8 @@ const ExampleOne = () => {
             <About/>
           </center>
         </motion.div>
-      </div>
-      <div ref={fourthRef} className="divFour">
+      </section>
+      <section ref={fourthRef} className="divFour" id="resume">
       <motion.div
           intial="end"
           animate={fourthInView ? "start" : "end"}
@@ -97,7 +98,8 @@ const ExampleOne = () => {
         >
           <Resume/>
           </motion.div>
-      </div>
+      </section>
+      
     </div>
   );
 };
