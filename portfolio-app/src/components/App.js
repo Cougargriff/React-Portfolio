@@ -44,7 +44,6 @@ function navBar() {
       <Breadcrumb.Item>
         <Link to="/about">About</Link>
       </Breadcrumb.Item>
-      <ExampleOne />
     </Breadcrumb>
   );
 }
@@ -89,6 +88,7 @@ function App() {
         <Route path="/projects" component={Projects} />
         <Route path="/cv" component={Resume} />
       </div>
+      <ExampleOne />
     </BrowserRouter>
   );
 }
