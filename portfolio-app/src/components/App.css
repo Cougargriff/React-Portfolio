@@ -13,6 +13,17 @@
   }
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+.snippet {
+  font-family: 'Press Start 2P', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap');
+
+.headers {
+  font-family: 'Baloo 2';
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

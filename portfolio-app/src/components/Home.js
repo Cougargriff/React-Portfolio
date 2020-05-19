@@ -8,7 +8,7 @@ import React from 'react';
 function Home(props) {
     return (
         <div>
-            <h1>
+            <h1 className="headers">
                 Home Component
             </h1>
             <a>

@@ -30,7 +30,7 @@ function Resume(props) {
             px={3}
             py={4}
             bg='muted'>
-            <h1>Resume</h1>
+            <h1 className="headers">Resume</h1>
             <Box mx='auto' />
             <Link href="https://github.com/Cougargriff/ResumeLatex/raw/master/resume_curr.pdf">
                 <Button ml={2} variant='primary' 
@@ -62,7 +62,7 @@ function Resume(props) {
                             backgroundColor: 'red',}
                         }}>Back to Top
                     </Button>
-                    </AnchorLink>
+                </AnchorLink>
                 </Flex>
             </section>
       </div>

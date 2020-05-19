@@ -26,36 +26,52 @@ import "./App.css";
 
 function titleSnippet() {
   return (
-    <div style={{ fontFamily: "Press Start 2P" }}>
+    <div className="snippet">
       Hello World ... Welcome to my portfolio website :)
     </div>
   );
 }
 
-function navBar() {
+function navButtons() {
   return (
-    <Breadcrumb separator=" / ">
-      <Breadcrumb.Item>
-      <AnchorLink href='#projects'>Projects</AnchorLink>
-      </Breadcrumb.Item>
-      <Breadcrumb.Item>
-      <AnchorLink href='#about'>About</AnchorLink>
-      </Breadcrumb.Item>
-      <Breadcrumb.Item>
-      <AnchorLink href='#resume'>Resume</AnchorLink>
-      </Breadcrumb.Item>
-    </Breadcrumb>
+    <Flex alignItems="center" px={3} py={4} bg="muted">
+    <Box mx="auto" />
+    <AnchorLink href='#projects'>
+      <Button ml={2} variant='primary' 
+              sx={{
+                  backgroundColor: '#82AFD4',
+              ':hover': {
+              backgroundColor: '#A3D9FF',}
+          }}>Projects
+      </Button>
+    </AnchorLink>
+    <AnchorLink href='#about'>
+      <Button ml={2} variant='primary' 
+              sx={{
+                  backgroundColor: '#DA3E52',
+              ':hover': {
+              backgroundColor: '#ED8593',}
+          }}>About
+      </Button>
+    </AnchorLink>
+    <AnchorLink href='#resume'>
+      <Button ml={2} variant='primary' 
+              sx={{
+                  backgroundColor: '#69A87D',
+              ':hover': {
+              backgroundColor: '#96E6B3',}
+          }}>Resume
+      </Button>
+    </AnchorLink>
+  </Flex>
   );
 }
 
-function App() {
-
+function navBar() {
   return (
-      <div className="App">
-        {titleSnippet()}
-        <section id="top">
-          <Flex alignItems="center" px={3} py={4} bg="muted">
-            {navBar()}
+
+        <Flex alignItems="center" px={3} py={4} bg="muted">
+          {navButtons()}
             <Box mx="auto" />
             <motion.div
               className="container"
@@ -82,7 +98,17 @@ function App() {
                 category="LinkedIn"
               />
             </motion.div>
-          </Flex>
+            </Flex>
+  )
+}
+
+function App() {
+
+  return (
+      <div className="App">
+        {titleSnippet()}
+        <section id="top">
+        {navBar()}
         </section>
         <ScrollWrapper />
       </div>
