@@ -73,14 +73,16 @@ const ExampleOne = () => {
         </motion.h1>
       </div>
       <div ref={fourthRef} className="divFour">
-        <motion.h1
+        <motion.div
           initial="start"
           animate={fourthInView ? "end" : "start"}
           transition={{ duration: 2 }}
           variants={variantFour}
         >
-          This is the Fourth section
-        </motion.h1>
+          <h1>This is the Fourth section</h1>
+          <p>This is the Fourth Paragraph</p>
+          <h1>This is another Header</h1>
+        </motion.div>
       </div>
     </div>
   );
