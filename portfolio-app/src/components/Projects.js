@@ -11,6 +11,10 @@ function Projects(props) {
             <h1>
                 Projects Component
             </h1>
+
+            <a>
+                Github API call here!
+            </a>
             
         </div>
     )
