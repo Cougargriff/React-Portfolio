@@ -17,6 +17,8 @@ import linked_logo from '../res/linkedin_logo.svg'
 import { Breadcrumb } from 'antd';
 import { Flex, Button, Box } from 'rebass';
 import { motion, Switch } from "framer-motion"
+import { useInView } from 'react-intersection-observer'
+
 import './App.css';
 
 function titleSnippet() {
@@ -48,9 +50,15 @@ function navBar() {
 }
 
 function App() {
+
+  const [ref, inView, entry] = useInView({
+    /* Optional options */
+    threshold: 0,
+  })
+
   return (
     <BrowserRouter >
-      <div className="App" > 
+      <div className="App" ref={ref}> 
         {titleSnippet()}
         <Flex 
           alignItems='center'
