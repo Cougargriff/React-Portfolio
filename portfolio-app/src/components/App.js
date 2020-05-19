@@ -14,7 +14,7 @@ import github_logo from '../res/github_logo.svg';
 import linked_logo from '../res/linkedin_logo.svg'
 import { Breadcrumb } from 'antd';
 import { Flex, Button, Box } from 'rebass';
-import { motion } from "framer-motion"
+import { motion, Switch } from "framer-motion"
 import './App.css';
 
 function titleSnippet() {
@@ -59,7 +59,6 @@ function App() {
               className="container"
               whileHover={{ scale: 1.2, rotate: 0 }}
               whileTap={{ scale: 0.8, rotate: 0, borderRadius: "100%" }}>
-              
               <Thumbnail
                   link="https://github.com/Cougargriff"
                   image={github_logo}
