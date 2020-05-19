@@ -13,7 +13,7 @@ import Thumbnail from "./Thumbnail.js";
 import Resume from "./Resume.js";
 
 import ExampleOne from "./IntersectionExampleOne";
-import ExampleTwo from "./IntersectionExampleTwo";
+import ExampleTwo from "./ScrollWrapper";
 
 import github_logo from "../res/github_logo.svg";
 import linked_logo from "../res/linkedin_logo.svg";

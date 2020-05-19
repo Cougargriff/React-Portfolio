@@ -2,7 +2,7 @@ import React from "react";
 import { useInView } from "react-intersection-observer";
 import Home from "./Home";
 import { motion } from "framer-motion";
-import "./IntersectionExampleTwo.css";
+import "./ScrollWrapper.css";
 import Projects from "./Projects.js";
 import About from "./About.js";
 import Resume from "./Resume.js";
@@ -30,7 +30,7 @@ const ExampleOne = () => {
 
   const variantThree = {
     start: { y: 0, opacity: 1 },
-    end: { y: 200, opacity: 0.3 },
+    end: { y: 400, opacity: 0.3 },
   };
 
   const variantFour = {
