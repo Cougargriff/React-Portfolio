@@ -19,45 +19,27 @@ const ExampleOne = () => {
 
   return (
     <div>
-      <Home/>
       <div ref={firstRef} className="divOne">
-        {`Section First InView: ${firstInView}`}
-        <br />
-        {`Second Inview: ${secondInView}`}
-        <br />
-        {`Third Inview: ${thirdInView}`}
-        <br />
-        {`Fourth InView: ${fourthInView}`}
+        <center>
+          <Home/>
+        </center>
+        
       </div>
       <div ref={secondRef} className="divTwo">
-        <Projects/>
-        {`Section First InView: ${firstInView}`}
-        <br />
-        {`Second Inview: ${secondInView}`}
-        <br />
-        {`Third Inview: ${thirdInView}`}
-        <br />
-        {`Fourth InView: ${fourthInView}`}
+        <center>
+          <Projects/>
+        </center>
       </div>
       <div ref={thirdRef} className="divThree">
-        <About/>
-        {`Section First InView: ${firstInView}`}
-        <br />
-        {`Second Inview: ${secondInView}`}
-        <br />
-        {`Third Inview: ${thirdInView}`}
-        <br />
-        {`Fourth InView: ${fourthInView}`}
+        <center>
+          <About/>
+        </center>
       </div>
       <div ref={fourthRef} className="divFour">
-        <Resume/>
-        {`Section First InView: ${firstInView}`}
-        <br />
-        {`Second Inview: ${secondInView}`}
-        <br />
-        {`Third Inview: ${thirdInView}`}
-        <br />
-        {`Fourth InView: ${fourthInView}`}
+        <center>
+          <Resume/>
+        </center>
+        
       </div>
     </div>
   );
