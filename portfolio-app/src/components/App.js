@@ -89,7 +89,6 @@ function App() {
         <Route path="/projects" component={Projects} />
         <Route path="/cv" component={Resume} />
       </div>
-      <ExampleOne />
       <ExampleTwo />
     </BrowserRouter>
   );

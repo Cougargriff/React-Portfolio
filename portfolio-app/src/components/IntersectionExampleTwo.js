@@ -3,6 +3,9 @@ import { useInView } from "react-intersection-observer";
 import Home from "./Home";
 import { motion } from "framer-motion";
 import "./IntersectionExampleTwo.css";
+import Projects from "./Projects.js";
+import About from "./About.js";
+import Resume from "./Resume.js";
 
 const ExampleOne = () => {
   //triggerOnce is another option, to trigger only once, default is false
@@ -41,23 +44,32 @@ const ExampleOne = () => {
   return (
     <div>
       <div ref={firstRef} className="divOne">
-        <motion.h1
-          initial="hide"
-          //If firstInView is true, then change state to show, else state is hide
-          animate={firstInView ? "show" : "hide"}
-          variants={variantOne}
+      <motion.h1
+          intial="end"
+          animate={thirdInView ? "start" : "end"}
+          //optional, transition lets you decide how animations transition
+          //in this example, it takes a total of 4 seconds to complete animation
+          transition={{ duration: 4 }}
+          variants={variantThree}
         >
-          This is the first section
+          <center>
+            <Home/>
+          </center>
         </motion.h1>
       </div>
 
       <div ref={secondRef} className="divTwo">
-        <motion.h1
-          initial="small"
-          animate={secondInView ? "big" : "small"}
-          variants={variantTwo}
+      <motion.h1
+          intial="end"
+          animate={thirdInView ? "start" : "end"}
+          //optional, transition lets you decide how animations transition
+          //in this example, it takes a total of 4 seconds to complete animation
+          transition={{ duration: 4 }}
+          variants={variantThree}
         >
-          This is the second section
+          <center>
+            <Projects/>
+          </center>
         </motion.h1>
       </div>
       <div ref={thirdRef} className="divThree">
@@ -69,20 +81,13 @@ const ExampleOne = () => {
           transition={{ duration: 4 }}
           variants={variantThree}
         >
-          This is the Third section
+          <center>
+            <About/>
+          </center>
         </motion.h1>
       </div>
       <div ref={fourthRef} className="divFour">
-        <motion.div
-          initial="start"
-          animate={fourthInView ? "end" : "start"}
-          transition={{ duration: 2 }}
-          variants={variantFour}
-        >
-          <h1>This is the Fourth section</h1>
-          <p>This is the Fourth Paragraph</p>
-          <h1>This is another Header</h1>
-        </motion.div>
+          <Resume/>
       </div>
     </div>
   );
