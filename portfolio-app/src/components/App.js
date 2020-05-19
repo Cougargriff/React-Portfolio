@@ -13,6 +13,7 @@ import Thumbnail from "./Thumbnail.js";
 import Resume from "./Resume.js";
 
 import ExampleOne from "./IntersectionExampleOne";
+import ExampleTwo from "./IntersectionExampleTwo";
 
 import github_logo from "../res/github_logo.svg";
 import linked_logo from "../res/linkedin_logo.svg";
@@ -89,6 +90,7 @@ function App() {
         <Route path="/cv" component={Resume} />
       </div>
       <ExampleOne />
+      <ExampleTwo />
     </BrowserRouter>
   );
 }
