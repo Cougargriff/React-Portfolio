@@ -23,6 +23,7 @@ import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 import "./App.css";
 
+
 function titleSnippet() {
   return (
     <div style={{ fontFamily: "Press Start 2P" }}>
@@ -48,6 +49,12 @@ function navBar() {
 }
 
 function App() {
+
+  const [ref, inView, entry] = useInView({
+    /* Optional options */
+    threshold: 0,
+  })
+
   return (
       <div className="App">
         {titleSnippet()}
