@@ -50,11 +50,6 @@ function navBar() {
 
 function App() {
 
-  const [ref, inView, entry] = useInView({
-    /* Optional options */
-    threshold: 0,
-  })
-
   return (
       <div className="App">
         {titleSnippet()}
