@@ -9,6 +9,7 @@
     "antd": "^4.2.4",
     "framer-motion": "^1.11.0",
     "react": "^16.13.1",
+    "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-dom": "^16.13.1",
     "react-intersection-observer": "^8.26.2",
     "react-pdf": "^4.1.0",

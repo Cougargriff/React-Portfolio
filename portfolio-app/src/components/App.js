@@ -2,103 +2,90 @@
   Main Workspace for App
 */
 
-import React from 'react';
-import logo from '../res/logo.svg';
+import React from "react";
+import logo from "../res/logo.svg";
 
-import { BrowserRouter, Route, Link } from 'react-router-dom';
-import Projects from './Projects.js';
-import About from './About.js';
-import Home from './Home.js';
-import Thumbnail from './Thumbnail.js';
-import Resume from './Resume.js';
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import Projects from "./Projects.js";
+import About from "./About.js";
+import Home from "./Home.js";
+import Thumbnail from "./Thumbnail.js";
+import Resume from "./Resume.js";
 
-import github_logo from '../res/github_logo.svg';
-import linked_logo from '../res/linkedin_logo.svg'
-import { Breadcrumb } from 'antd';
-import { Flex, Button, Box } from 'rebass';
-import { motion, Switch } from "framer-motion"
-import { useInView } from 'react-intersection-observer'
+import ScrollWrapper from "./ScrollWrapper";
 
-import './App.css';
+import github_logo from "../res/github_logo.svg";
+import linked_logo from "../res/linkedin_logo.svg";
+import { Breadcrumb } from "antd";
+import { Flex, Button, Box } from "rebass";
+import { motion, Switch } from "framer-motion";
+import AnchorLink from 'react-anchor-link-smooth-scroll'
+
+import "./App.css";
+
 
 function titleSnippet() {
   return (
-    <div style={{"fontFamily": "Press Start 2P"}}>
+    <div style={{ fontFamily: "Press Start 2P" }}>
       Hello World ... Welcome to my portfolio website :)
     </div>
-    
-  )
+  );
 }
 
 function navBar() {
   return (
     <Breadcrumb separator=" / ">
       <Breadcrumb.Item>
-          <Link to="/">Home</Link>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item>
-          <Link to="/projects">Projects</Link>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item>
-          <Link to="/cv">Resume</Link>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item>
-          <Link to="/about">About</Link>
-        </Breadcrumb.Item>
-      </Breadcrumb>
-  )
+      <AnchorLink href='#projects'>Projects</AnchorLink>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item>
+      <AnchorLink href='#about'>About</AnchorLink>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item>
+      <AnchorLink href='#resume'>Resume</AnchorLink>
+      </Breadcrumb.Item>
+    </Breadcrumb>
+  );
 }
 
 function App() {
 
-  const [ref, inView, entry] = useInView({
-    /* Optional options */
-    threshold: 0,
-  })
-
   return (
-    <BrowserRouter >
-      <div className="App" ref={ref}> 
+      <div className="App">
         {titleSnippet()}
-        <Flex 
-          alignItems='center'
-          px={3}
-          py={4}
-          bg='muted'>
+        <section id="top">
+          <Flex alignItems="center" px={3} py={4} bg="muted">
             {navBar()}
-            <Box mx='auto'/>
+            <Box mx="auto" />
             <motion.div
               className="container"
               whileHover={{ scale: 1.2, rotate: 0 }}
-              whileTap={{ scale: 0.8, rotate: 0, borderRadius: "100%" }}>
+              whileTap={{ scale: 0.8, rotate: 0, borderRadius: "100%" }}
+            >
               <Thumbnail
-                  link="https://github.com/Cougargriff"
-                  image={github_logo}
-                  title="Github Profile"
-                  category="Repos"
-            />
+                link="https://github.com/Cougargriff"
+                image={github_logo}
+                title="Github Profile"
+                category="Repos"
+              />
             </motion.div>
-            &nbsp;
-            &nbsp;
+            &nbsp; &nbsp;
             <motion.div
               className="container"
               whileHover={{ scale: 1.2, rotate: 0 }}
-              whileTap={{ scale: 0.8, rotate: 0, borderRadius: "100%" }}>
-            <Thumbnail
+              whileTap={{ scale: 0.8, rotate: 0, borderRadius: "100%" }}
+            >
+              <Thumbnail
                 link="https://www.linkedin.com/in/griffin-johnson-462393134"
                 image={linked_logo}
                 title="LinkedIn Profile"
                 category="LinkedIn"
-            />
+              />
             </motion.div>
-        </Flex>
-        
-        <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="/projects" component={Projects} />
-        <Route path="/cv" component={Resume} />
+          </Flex>
+        </section>
+        <ScrollWrapper />
       </div>
-    </BrowserRouter>
   );
 }
 
