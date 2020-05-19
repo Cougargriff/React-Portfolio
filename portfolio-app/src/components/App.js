@@ -32,16 +32,16 @@ function navBar() {
   return (
     <Breadcrumb separator=" / ">
       <Breadcrumb.Item>
-          <a href="/">Home</a>
+          <Link to="/">Home</Link>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <a href="/projects">Projects</a>
+          <Link to="/projects">Projects</Link>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <a href="/about">About</a>
+          <Link to="/about">About</Link>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <a href="/cv">Resume</a>
+          <Link to="/cv">Resume</Link>
         </Breadcrumb.Item>
       </Breadcrumb>
   )
@@ -51,7 +51,7 @@ function App() {
   return (
     <BrowserRouter >
       <div className="App" > 
-      {titleSnippet()}
+        {titleSnippet()}
         <Flex 
           alignItems='center'
           px={3}
