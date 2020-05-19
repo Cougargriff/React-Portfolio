@@ -46,10 +46,10 @@ const ExampleOne = () => {
       <div ref={firstRef} className="divOne">
       <motion.h1
           intial="end"
-          animate={thirdInView ? "start" : "end"}
+          animate={firstInView ? "start" : "end"}
           //optional, transition lets you decide how animations transition
           //in this example, it takes a total of 4 seconds to complete animation
-          transition={{ duration: 4 }}
+          transition={{ duration: 2 }}
           variants={variantThree}
         >
           <center>
@@ -61,7 +61,7 @@ const ExampleOne = () => {
       <div ref={secondRef} className="divTwo">
       <motion.h1
           intial="end"
-          animate={thirdInView ? "start" : "end"}
+          animate={secondInView ? "start" : "end"}
           //optional, transition lets you decide how animations transition
           //in this example, it takes a total of 4 seconds to complete animation
           transition={{ duration: 4 }}
@@ -78,7 +78,7 @@ const ExampleOne = () => {
           animate={thirdInView ? "start" : "end"}
           //optional, transition lets you decide how animations transition
           //in this example, it takes a total of 4 seconds to complete animation
-          transition={{ duration: 4 }}
+          transition={{ duration: 2 }}
           variants={variantThree}
         >
           <center>
