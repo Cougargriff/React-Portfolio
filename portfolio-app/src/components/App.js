@@ -10,6 +10,8 @@ import Projects from './Projects.js';
 import About from './About.js';
 import Home from './Home.js';
 import Thumbnail from './Thumbnail.js';
+import Resume from './Resume.js';
+
 import github_logo from '../res/github_logo.svg';
 import linked_logo from '../res/linkedin_logo.svg'
 import { Breadcrumb } from 'antd';
@@ -37,7 +39,9 @@ function navBar() {
         <Breadcrumb.Item>
           <a href="/about">About</a>
         </Breadcrumb.Item>
-        
+        <Breadcrumb.Item>
+          <a href="/cv">Resume</a>
+        </Breadcrumb.Item>
       </Breadcrumb>
   )
 }
@@ -75,6 +79,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/about" component={About} />
         <Route path="/projects" component={Projects} />
+        <Route path="/cv" component={Resume} />
       </div>
     </BrowserRouter>
   );
