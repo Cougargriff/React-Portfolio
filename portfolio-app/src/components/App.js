@@ -38,10 +38,10 @@ function navBar() {
           <Link to="/projects">Projects</Link>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <Link to="/about">About</Link>
+          <Link to="/cv">Resume</Link>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <Link to="/cv">Resume</Link>
+          <Link to="/about">About</Link>
         </Breadcrumb.Item>
       </Breadcrumb>
   )
