@@ -48,11 +48,8 @@ function Resume(props) {
                 <Document
                     file={resume}
                     onLoadSuccess={onDocumentLoadSuccess}
-                    style={{
-                        margin: 30
-                    }}
                 >
-                    <Page pageNumber={pageNumber} />
+                    <Page renderMode="svg" pageNumber={pageNumber} />
                 </Document>
             </center>
       </div>
