@@ -29,8 +29,8 @@ const ExampleOne = () => {
   };
 
   const variantThree = {
-    start: { y: 0 },
-    end: { y: 400 },
+    start: { y: 0, opacity: 1 },
+    end: { y: 200, opacity: 0.3 },
   };
 
   const variantFour = {
@@ -44,7 +44,7 @@ const ExampleOne = () => {
   return (
     <div>
       <div ref={firstRef} className="divOne">
-      <motion.h1
+      <motion.div
           intial="end"
           animate={firstInView ? "start" : "end"}
           //optional, transition lets you decide how animations transition
@@ -55,25 +55,25 @@ const ExampleOne = () => {
           <center>
             <Home/>
           </center>
-        </motion.h1>
+        </motion.div>
       </div>
 
       <div ref={secondRef} className="divTwo">
-      <motion.h1
+      <motion.div
           intial="end"
           animate={secondInView ? "start" : "end"}
           //optional, transition lets you decide how animations transition
           //in this example, it takes a total of 4 seconds to complete animation
-          transition={{ duration: 4 }}
+          transition={{ duration: 2 }}
           variants={variantThree}
         >
           <center>
             <Projects/>
           </center>
-        </motion.h1>
+        </motion.div>
       </div>
       <div ref={thirdRef} className="divThree">
-        <motion.h1
+        <motion.div
           intial="end"
           animate={thirdInView ? "start" : "end"}
           //optional, transition lets you decide how animations transition
@@ -84,10 +84,19 @@ const ExampleOne = () => {
           <center>
             <About/>
           </center>
-        </motion.h1>
+        </motion.div>
       </div>
       <div ref={fourthRef} className="divFour">
+      <motion.div
+          intial="end"
+          animate={fourthInView ? "start" : "end"}
+          //optional, transition lets you decide how animations transition
+          //in this example, it takes a total of 4 seconds to complete animation
+          transition={{ duration: 2 }}
+          variants={variantThree}
+        >
           <Resume/>
+          </motion.div>
       </div>
     </div>
   );

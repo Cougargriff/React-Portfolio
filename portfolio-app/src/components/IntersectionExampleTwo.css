@@ -1,19 +1,19 @@
 .divOne {
   min-height: 1000px;
-  background: blue;
+  background: white;
 }
 
 .divTwo {
   min-height: 1000px;
-  background: green;
+  background: white;
 }
 
 .divThree {
   min-height: 1000px;
-  background: orange;
+  background: white;
 }
 
 .divFour {
-  min-height: 1000px;
-  background: red;
+  min-height: 900px;
+  background: white;
 }
