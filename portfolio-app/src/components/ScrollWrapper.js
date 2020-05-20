@@ -7,16 +7,18 @@ import Projects from "./Projects.js";
 import About from "./About.js";
 import Resume from "./Resume.js";
 import { Flex, Button, Box } from "rebass";
+import AnchorLink from 'react-anchor-link-smooth-scroll'
+
 
 const ExampleOne = () => {
   //triggerOnce is another option, to trigger only once, default is false
   const [firstRef, firstInView] = useInView({
-    threshold: 0.3,
+    threshold: 0.4,
     triggerOnce: true,
   });
-  const [secondRef, secondInView] = useInView({ threshold: 0.3 });
-  const [thirdRef, thirdInView] = useInView({ threshold: 0.3 });
-  const [fourthRef, fourthInView] = useInView({ threshold: 0.3 });
+  const [secondRef, secondInView] = useInView({ threshold: 0.4 });
+  const [thirdRef, thirdInView] = useInView({ threshold: 0.4 });
+  const [fourthRef, fourthInView] = useInView({ threshold: 0.4 });
 
   //varaints are used by framer motion
   const variantOne = {
@@ -30,8 +32,8 @@ const ExampleOne = () => {
   };
 
   const variantThree = {
-    start: { y: 0, opacity: 1 },
-    end: { y: 400, opacity: 0.3 },
+    start: { opacity: 1 },
+    end: { opacity: 0 },
   };
 
   const variantFour = {
@@ -53,9 +55,7 @@ const ExampleOne = () => {
           transition={{ duration: 2 }}
           variants={variantThree}
         >
-          <center>
-            <Home/>
-          </center>
+          <Home/>
         </motion.div>
       </section>
 
@@ -92,6 +92,20 @@ const ExampleOne = () => {
           <Resume/>
         </div>
       </section>
+      <section className="divFive">
+                <Flex alignItems="center" px={3} py={4} bg="muted">
+                <Box mx="auto" />
+                <AnchorLink href='#top'>
+                    <Button ml={2} variant='primary' className="contents"
+                            sx={{
+                                backgroundColor: '#ffb347',
+                            ':hover': {
+                            backgroundColor: 'red',}
+                        }}>Back to Top
+                    </Button>
+                </AnchorLink>
+                </Flex>
+            </section>
       
     </div>
   );

@@ -7,12 +7,11 @@ import Paragraph from "antd/lib/skeleton/Paragraph"
 
 function content() {
     return (
-        <a>
+        <a className="contents">
         I am a software engineer who recently graduated from Cal Poly SLO. 
         Working on complex projects while in school has allowed me to develop a 
-        diverse set of skill that I am always looking to expand. My passion for software has
-        led to creating a variety of side projects including this very site. Feel free to take a look at my projects
-        and contact me if you have any questions :)
+        diverse set of skills that I am always looking to expand. My passion for software has
+        led to me creating a variety of side projects including this very site.
         </a>
     )
 }

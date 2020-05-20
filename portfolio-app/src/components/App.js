@@ -37,7 +37,7 @@ function navButtons() {
     <Flex alignItems="center" px={3} py={4} bg="muted">
     <Box mx="auto" />
     <AnchorLink href='#projects'>
-      <Button ml={2} variant='primary' 
+      <Button ml={2} variant='primary' className="contents"
               sx={{
                   backgroundColor: '#82AFD4',
               ':hover': {
@@ -46,7 +46,7 @@ function navButtons() {
       </Button>
     </AnchorLink>
     <AnchorLink href='#about'>
-      <Button ml={2} variant='primary' 
+      <Button ml={2} variant='primary' className="contents"
               sx={{
                   backgroundColor: '#DA3E52',
               ':hover': {
@@ -55,7 +55,7 @@ function navButtons() {
       </Button>
     </AnchorLink>
     <AnchorLink href='#resume'>
-      <Button ml={2} variant='primary' 
+      <Button ml={2} variant='primary' className="contents"
               sx={{
                   backgroundColor: '#69A87D',
               ':hover': {
@@ -106,7 +106,6 @@ function App() {
 
   return (
       <div className="App">
-        {titleSnippet()}
         <section id="top">
         {navBar()}
         </section>

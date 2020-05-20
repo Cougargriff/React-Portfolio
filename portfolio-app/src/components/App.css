@@ -18,10 +18,16 @@
   font-family: 'Press Start 2P', sans-serif;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&display=swap');
 
 .headers {
-  font-family: 'Baloo 2';
+  font-family: 'DM Mono';
+  font-size: xx-large;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Open+Sans:wght@300;400&display=swap');
+.contents {
+  font-family: 'Open Sans';
 }
 
 .App-header {
