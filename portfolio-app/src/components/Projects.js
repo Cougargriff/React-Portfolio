@@ -29,7 +29,7 @@ function title() {
 function content() {
     return (
     <a className="contents">
-                Here lies my pinned respositories pulled from Github
+                Here lies my pinned respositories pulled live from github :)
     </a>
     )
 }
@@ -87,7 +87,6 @@ function cards() {
                 }}
             </Async.Fulfilled>
             <Async.Rejected>
-                {console.log("rejected")}
             </Async.Rejected>
         </Async>
     )

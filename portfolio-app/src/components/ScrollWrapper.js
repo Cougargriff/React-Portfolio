@@ -88,9 +88,18 @@ const ExampleOne = () => {
         </motion.div>
       </section>
       <section ref={fourthRef} className="divFour" id="resume">
+      <motion.div
+          intial="end"
+          animate={fourthInView ? "start" : "end"}
+          //optional, transition lets you decide how animations transition
+          //in this example, it takes a total of 4 seconds to complete animation
+          transition={{ duration: 2 }}
+          variants={variantThree}
+        >
         <div>
           <Resume/>
         </div>
+        </motion.div>
       </section>
       <section className="divFive">
                 <Flex alignItems="center" px={3} py={4} bg="muted">

@@ -11,7 +11,7 @@ function content() {
         I am a software engineer who recently graduated from Cal Poly SLO. 
         Working on complex projects while in school has allowed me to develop a 
         diverse set of skills that I am always looking to expand. My passion for software has
-        led to me creating a variety of side projects including this very site.
+        led me to create a variety of side projects including this very site.
         </a>
     )
 }
