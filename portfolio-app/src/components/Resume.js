@@ -43,7 +43,7 @@ function Resume(props) {
             </Link>
         </Flex>
             <center>
-                <Document
+                <Document 
                     file={resume}
                     onLoadSuccess={onDocumentLoadSuccess}
                 >

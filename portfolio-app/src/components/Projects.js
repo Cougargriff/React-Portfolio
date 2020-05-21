@@ -96,7 +96,6 @@ function Projects(props) {
     return (
         <div>
             {title()}
-            {content()}
             {cards()}
         </div>
     )

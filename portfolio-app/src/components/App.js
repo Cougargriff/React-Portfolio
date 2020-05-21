@@ -16,6 +16,8 @@ import ScrollWrapper from "./ScrollWrapper";
 
 import github_logo from "../res/github_logo.svg";
 import linked_logo from "../res/linkedin_logo.svg";
+import mailto_logo from "../res/mailTo.svg"
+
 import { Breadcrumb } from "antd";
 import { Flex, Button, Box } from "rebass";
 import { motion, Switch } from "framer-motion";
@@ -37,7 +39,7 @@ function navButtons() {
     <Flex alignItems="center" px={3} py={4} bg="muted">
     <Box mx="auto" />
     <AnchorLink href='#projects'>
-      <Button ml={2} variant='primary' className="contents"
+      <Button ml={2} variant='primary' 
               sx={{
                   backgroundColor: '#82AFD4',
               ':hover': {
@@ -46,7 +48,7 @@ function navButtons() {
       </Button>
     </AnchorLink>
     <AnchorLink href='#about'>
-      <Button ml={2} variant='primary' className="contents"
+      <Button ml={2} variant='primary' 
               sx={{
                   backgroundColor: '#DA3E52',
               ':hover': {
@@ -55,7 +57,7 @@ function navButtons() {
       </Button>
     </AnchorLink>
     <AnchorLink href='#resume'>
-      <Button ml={2} variant='primary' className="contents"
+      <Button ml={2} variant='primary' 
               sx={{
                   backgroundColor: '#69A87D',
               ':hover': {
@@ -96,6 +98,19 @@ function navBar() {
                 image={linked_logo}
                 title="LinkedIn Profile"
                 category="LinkedIn"
+              />
+            </motion.div>
+            &nbsp; &nbsp;
+            <motion.div
+              className="container"
+              whileHover={{ scale: 1.2, rotate: 0 }}
+              whileTap={{ scale: 0.8, rotate: 0, borderRadius: "100%" }}
+            >
+              <Thumbnail
+                link="mailto:griffinpjohnson@gmail.com"
+                image={mailto_logo}
+                title="Send me an Email!"
+                category="MailTo"
               />
             </motion.div>
             </Flex>
