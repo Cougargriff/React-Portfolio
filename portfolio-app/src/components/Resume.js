@@ -42,14 +42,17 @@ function Resume(props) {
                 </Button>
             </Link>
         </Flex>
+        
             <center>
                 <Document 
                     file={resume}
                     onLoadSuccess={onDocumentLoadSuccess}
                 >
                     <Page renderMode="svg" pageNumber={pageNumber} />
+
                 </Document>
             </center>
+          
             
       </div>
     )

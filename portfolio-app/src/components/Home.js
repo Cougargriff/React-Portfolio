@@ -17,7 +17,7 @@ function contents() {
     return (
         <center >
             <h2 className="contents" >
-                I am a Software Engineer.
+                I am a Software Engineer
             </h2>
             </center>      
     )

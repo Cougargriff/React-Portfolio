@@ -103,6 +103,9 @@ const ExampleOne = () => {
       </section>
       <section className="divFive">
                 <Flex alignItems="center" px={3} py={4} bg="muted">
+                <a>
+                  Site V1 created by Griffin Johnson griffinpjohnson@gmail.com / (425) 417 - 5098
+                </a>
                 <Box mx="auto" />
                 <AnchorLink href='#top'>
                     <Button ml={2} variant='primary' className="contents"
@@ -115,7 +118,6 @@ const ExampleOne = () => {
                 </AnchorLink>
                 </Flex>
             </section>
-      
     </div>
   );
 };
