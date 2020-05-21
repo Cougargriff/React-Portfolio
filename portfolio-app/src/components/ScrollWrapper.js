@@ -41,6 +41,14 @@ const ExampleOne = () => {
     end: { x: 0, opacity: 1, scale: 1 },
   };
 
+  function tagLine() {
+    return (
+      <a>
+          Site v1.0 created by Griffin Johnson &#8226; griffinpjohnson@gmail.com &#8226; (425) 417 - 5098
+      </a>
+    )
+  }
+
   //framer motion elements have initial, animate, and varaints properties
   //initial is the initial state
   //animate changes the state of the element
@@ -103,9 +111,7 @@ const ExampleOne = () => {
       </section>
       <section className="divFive">
                 <Flex alignItems="center" px={3} py={4} bg="muted">
-                <a>
-                  Site V1 created by Griffin Johnson griffinpjohnson@gmail.com / (425) 417 - 5098
-                </a>
+                {tagLine()}
                 <Box mx="auto" />
                 <AnchorLink href='#top'>
                     <Button ml={2} variant='primary' className="contents"
