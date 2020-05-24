@@ -13,7 +13,7 @@ const AboutSection = styled.div`
 
 const TwoColumnContent = styled.div`
     display: grid,
-    grid-template-columns: 8ch auto;
+    grid-template-columns: minmax(250px, 1fr) 1fr;
     justify-items: center;
     align-items: center;
 `
@@ -33,7 +33,7 @@ const AboutDescription = styled.p`
 
 function content() {
     return (
-        <AboutDescription className="contents" >
+        <AboutDescription className="contents">
         I am a software engineer who recently graduated from Cal Poly SLO. 
         Working on complex projects at Cal Poly has allowed me to develop a 
         diverse set of skills that I am always looking to expand. My passion for software has
@@ -44,9 +44,7 @@ function content() {
 
 function AboutTitle() {
     return (
-        <h1 className="headers" style={{
-            textAlign: 'center',
-        }}>
+        <h1 className="headers">
             About Me
         </h1>
     )
