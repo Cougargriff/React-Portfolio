@@ -23,6 +23,7 @@
 .headers {
   font-family: 'DM Mono';
   font-size: xx-large;
+  text-align: center;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Open+Sans:wght@300;400&display=swap');
