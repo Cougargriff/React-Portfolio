@@ -40,6 +40,45 @@ function loadRepos() {
     .then(res => res.json())
 }
 
+function languageDot(lang) {
+    return (
+        <span className="dot" style={{
+            backgroundColor: colors[lang].color}}>   
+        </span>
+    )
+}
+
+function formatProjectElements(data) {
+    return (
+        <div>
+            {data.map(repo => (
+                <div width={256} key={repo.name}>
+                    <div>
+                        <h3 className="contents">
+                            {repo.name}&ensp;
+                            {languageDot(repo.language)}
+                        &ensp;
+                        <span className="contents">{repo.language}</span>
+                        </h3>
+                    </div>
+                    <a className="contents">
+                        {repo.description}
+                    </a>
+                    <br/><br/>
+                    <Link href={repo.html_url}>
+                    <Button variant='primary' mr={2}sx={{
+                        backgroundColor: colors[repo.language].color,
+                        ':hover': {
+                        backgroundColor: shadeHexColor(colors[repo.language].color, 0.5),}
+                        }}>Check it out!</Button>
+                    </Link>
+                    <br/><br/>
+                </div>
+            ))}
+        </div>
+    )
+}
+
 function cards() {
     return (
         <Async promiseFn={loadRepos}>
@@ -52,35 +91,7 @@ function cards() {
                             gridGap: 4,
                             gridTemplateColumns: 'repeat(auto-fit, minmax(128px, 1fr))',
                             }}>
-                                {data.map(repo => (
-                                    <div width={256} key={repo.name}>
-                                        <div>
-                                            <h3 className="contents">
-                                                {repo.name}&ensp;
-                                                <span className="dot" style={{
-                                                backgroundColor: colors[repo.language].color
-                                            }}>   
-                                            </span>
-                                            &ensp;-&ensp;
-                                            <span className="contents">{repo.language}</span>
-                                            </h3>
-                                            
-                                        </div>
-                                        
-                                        <a className="contents">
-                                            {repo.description}
-                                        </a>
-                                        <br/><br/>
-                                        <Link href={repo.html_url}>
-                                        <Button variant='primary' mr={2}sx={{
-                                            backgroundColor: colors[repo.language].color,
-                                            ':hover': {
-                                            backgroundColor: shadeHexColor(colors[repo.language].color, 0.5),}
-                                            }}>Check it out!</Button>
-                                        </Link>
-                                        <br/><br/>
-                                    </div>
-                                ))}
+                                {formatProjectElements(data)}
                             </Box>
                        
                     )
