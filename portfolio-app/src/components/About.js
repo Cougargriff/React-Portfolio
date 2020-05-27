@@ -8,7 +8,6 @@ import styled from 'styled-components';
 
 const AboutSection = styled.div`
     text-align: center;
-    margin: 0;
 `
 
 const TwoColumnContent = styled.div`
@@ -17,7 +16,7 @@ const TwoColumnContent = styled.div`
     justify-items: center;
     align-items: center;
 
-    @media (max-width: 817px) {
+    @media (max-width: 1105px) {
         grid-template-columns: 1fr;
     }
 
@@ -26,6 +25,12 @@ const TwoColumnContent = styled.div`
 const RoundedImage = styled.img`
     border-radius: 30px;
     width: 400px;
+
+    margin-left: 200px;
+
+    @media (max-width: 1105px) {
+        margin-left: 0px;
+    }
 `
 
 const AboutDescription = styled.p`
@@ -34,6 +39,13 @@ const AboutDescription = styled.p`
     justify-self: start;
     align-self: start;
     padding: 10px 25px;
+
+    margin-right: 200px;
+
+    @media (max-width: 1105px) {
+        margin-right: 0px;
+    }
+    
 `
 
 function content() {
