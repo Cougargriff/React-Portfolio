@@ -89,10 +89,8 @@ const ExampleOne = () => {
           //in this example, it takes a total of 4 seconds to complete animation
           transition={{ duration: 2 }}
           variants={variantThree}
-        >
-          <center>
+        >    
             <About/>
-          </center>
         </motion.div>
       </section>
       <section ref={fourthRef} className="divFour" id="resume">

@@ -12,10 +12,15 @@ const AboutSection = styled.div`
 `
 
 const TwoColumnContent = styled.div`
-    display: grid,
+    display: grid;
     grid-template-columns: minmax(250px, 1fr) 1fr;
     justify-items: center;
     align-items: center;
+
+    @media (max-width: 817px) {
+        grid-template-columns: 1fr;
+    }
+
 `
 
 const RoundedImage = styled.img`
