@@ -92,7 +92,6 @@ const ScrollWrapper = () => {
       <TopSection id="home">
           <Home/>
       </TopSection>
-
       <FixedSection  id="projects">
         <Projects/>
       </FixedSection>
