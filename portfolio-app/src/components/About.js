@@ -15,7 +15,7 @@ const TwoColumnContent = styled.div`
     justify-items: center;
     align-items: center;
 
-    @media (max-width: 1105px) {
+    @media (max-width: 1250px) {
         grid-template-columns: 1fr;
     }
 
@@ -24,13 +24,10 @@ const TwoColumnContent = styled.div`
 const RoundedImage = styled.img`
     border-radius: 8px;
     width: 400px;
-
-
     margin-left: 200px;
 
-    @media (max-width: 1105px) {
+    @media (max-width: 1250px) {
         margin-left: 0px;
-
     }
 
     @media (max-width: 400px) {
@@ -48,7 +45,7 @@ const AboutDescription = styled.p`
 
     margin-right: 200px;
 
-    @media (max-width: 1105px) {
+    @media (max-width: 1250px) {
         margin-right: 0px;
     }
     
