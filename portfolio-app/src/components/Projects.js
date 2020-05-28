@@ -37,9 +37,6 @@ align-items: center;
 }
 `
 
-
-
-
 // CREDIT! ------> https://github.com/PimpTrizkit/PJs/wiki/12.-Shade,-Blend-and-Convert-a-Web-Color-(pSBC.js)#stackoverflow-archive-begin
 // MANY THANKS. My buttons look hella pro now
 function shadeHexColor(color, percent) {
@@ -95,11 +92,13 @@ function formatProjectElements(data) {
                     </a>
                     <br/><br/>
                     <Link href={repo.html_url}>
-                    <Button variant='primary' mr={2}sx={{
-                        backgroundColor: colors[repo.language].color,
-                        ':hover': {
-                        backgroundColor: shadeHexColor(colors[repo.language].color, 0.5),}
-                        }}>Check it out!</Button>
+                        <Button variant='primary' mr={2}sx={{
+                            backgroundColor: colors[repo.language].color,
+                            ':hover': {
+                            backgroundColor: shadeHexColor(colors[repo.language].color, 0.5),}
+                            }}>
+                                Check it out!
+                        </Button>
                     </Link>
                     <br/><br/>
                 </div>

@@ -1,37 +1,55 @@
 /*
     src/components/Projects.js
 */
-import resume from '../res/resume.pdf';
-import React, { useState } from 'react';
-import { pdfjs, Document, Page } from 'react-pdf';
-import { Flex, Button, Box, Heading, Link } from 'rebass';
+import resume from '../res/resume_curr-1.jpg';
+import React from 'react';
+import { Button, Link } from 'rebass';
+import styled from 'styled-components';
 
+const StyledImage = styled.img`
+    border-radius: 8px;
+    width: 1400px;
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+    @media (max-width: 1510px) {
+        margin-left: 0px;
+        width: 1000px
+    }
+
+    @media (max-width: 1105px) {
+        margin-left: 0px;
+        width: 700px
+    }
+
+    @media (max-width: 700px) {
+        margin-left: 0px;
+        width: 350px
+    }
+`
+
+const TwoColumnContent = styled.div`
+    display: grid;
+    grid-template-columns: minmax(250px, 1fr) 1fr;
+    justify-items: center;
+    align-items: center;
+
+    @media (max-width: 1105px) {
+        grid-template-columns: 1fr;
+    }
+`
 
 /* TODO figure out lazy loading from github hosted resume */
 
 function Resume(props) {
-
-    // Used for pdf?
-    const [numPages, setNumPages] = useState(null);
-    const [pageNumber, setPageNumber] = useState(1);
-
-    function onDocumentLoadSuccess({numPages}) {
-        setNumPages(numPages);
-    }
-
-    
-    
     return (
         <div>
-        <Flex
-            alignItems='center'
-            px={3}
-            py={4}
-            bg='muted'>
-            <h1 className="headers">Resume</h1>
-            <Box mx='auto' />
+            
+        <TwoColumnContent>
+
+            <h1 className='headers' style={{
+                textAlign: 'center'
+            }}>Resume</h1>
+
+            
             <Link href="https://github.com/Cougargriff/ResumeLatex/raw/master/resume_curr.pdf">
                 <Button ml={2} variant='primary' className="contents"
                     sx={{
@@ -42,17 +60,9 @@ function Resume(props) {
                 }}>Download
                 </Button>
             </Link>
-        </Flex>
-            <Document 
-                file={resume}
-                onLoadSuccess={onDocumentLoadSuccess}
-            >
-                <Page renderMode="svg" pageNumber={pageNumber} />
-
-            </Document>
-           
-          
             
+        </TwoColumnContent>
+        <StyledImage src={resume}></StyledImage>
       </div>
     )
 }

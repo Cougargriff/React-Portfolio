@@ -3,46 +3,34 @@
 */
 
 import React from 'react';
-import { Box, Flex } from 'rebass';
-import { Divider } from 'antd';
+import styled from 'styled-components';
 
-const styles = {
-    center: {
-      marginLeft: "auto",
-      marginRight: "auto"
-    }
-  }
+const Title = styled.h1`
+    padding-top: 400px;
+    color: white;
+`
+
+const ObjectiveStatement = styled.h2`
+    color: white;
+`
 
 function contents() {
     return (
         <center >
-            <h2 className="contents" >
+            <ObjectiveStatement className="contents" >
                 I am a Software Engineer
-            </h2>
-            </center>      
+            </ObjectiveStatement>
+        </center>      
     )
 }
 
 function title() {
     return (
         <center>      
-        <Box className="cover_image"
-        text-align='center'
-        sx={{
-            px: 2,
-            py: 6,
-            backgroundImage: 'url(https://i.imgur.com/YabLT7b.jpg)',
-            backgroundSize: 'cover',
-            borderRadius: 8,
-            maxWidth: '800px',
-            color: 'white',
-            bg: 'gray',
-        }}>
-  <h1 className="headers">
-    Griffin Johnson
-  </h1>
-</Box>
-</center>
+            <Title className="headers">
+                Griffin Johnson
+            </Title>
+        </center>
     )
 }
 
@@ -50,7 +38,7 @@ function title() {
 
 function Home(props) {
     return (
-        <div style={styles.center}>
+        <div>
             {title()}
             <br/>
             {contents()}
