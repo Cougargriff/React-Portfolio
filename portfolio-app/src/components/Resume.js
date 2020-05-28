@@ -5,7 +5,7 @@ import resume from '../res/resume.pdf';
 import React, { useState } from 'react';
 import { pdfjs, Document, Page } from 'react-pdf';
 import { Flex, Button, Box, Heading, Link } from 'rebass';
-import { motion } from "framer-motion";
+
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -21,6 +21,7 @@ function Resume(props) {
         setNumPages(numPages);
     }
 
+    
     
     return (
         <div>
@@ -42,16 +43,14 @@ function Resume(props) {
                 </Button>
             </Link>
         </Flex>
-        
-            <center>
-                <Document 
-                    file={resume}
-                    onLoadSuccess={onDocumentLoadSuccess}
-                >
-                    <Page renderMode="svg" pageNumber={pageNumber} />
+            <Document 
+                file={resume}
+                onLoadSuccess={onDocumentLoadSuccess}
+            >
+                <Page renderMode="svg" pageNumber={pageNumber} />
 
-                </Document>
-            </center>
+            </Document>
+           
           
             
       </div>

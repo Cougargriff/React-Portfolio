@@ -3,7 +3,7 @@
 */
 
 import React from 'react';
-import { Box, Button, Link, Card, Flex } from 'rebass'
+import { Button, Link } from 'rebass'
 import Async from 'react-async';
 import colors from '../res/lang_colors.json'
 import styled from 'styled-components';
@@ -16,9 +16,21 @@ const REPO_URL = "https://api.github.com/users/cougargriff/starred"
 
 const CardContainer = styled.div`
 display: grid;
-grid-template-columns: minmax(250px, 1fr) 1fr 1fr;
+grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 justify-items: center;
 align-items: center;
+
+@media (max-width: 2500px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+@media (max-width: 1800px) {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media (max-width: 1200px) {
+    grid-template-columns: 1fr 1fr;
+}
 
 @media (max-width: 850px) {
     grid-template-columns: 1fr;
@@ -69,7 +81,7 @@ function formatProjectElements(data) {
     return (
         <CardContainer>
             {data.map(repo => (
-                <div width={256} key={repo.name}>
+                <div width="256px" key={repo.name}>
                     <div>
                         <h3 className="contents">
                             {repo.name}&ensp;

@@ -3,7 +3,6 @@
 */
 
 import React from "react"
-import Paragraph from "antd/lib/skeleton/Paragraph"
 import styled from 'styled-components';
 
 const AboutSection = styled.div`
@@ -23,8 +22,9 @@ const TwoColumnContent = styled.div`
 `
 
 const RoundedImage = styled.img`
-    border-radius: 30px;
+    border-radius: 8px;
     width: 400px;
+
 
     margin-left: 200px;
 

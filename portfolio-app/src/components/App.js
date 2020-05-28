@@ -3,37 +3,44 @@
 */
 
 import React from "react";
-import logo from "../res/logo.svg";
-
-import { BrowserRouter, Route, Link } from "react-router-dom";
-import Projects from "./Projects.js";
-import About from "./About.js";
-import Home from "./Home.js";
 import Thumbnail from "./Thumbnail.js";
-import Resume from "./Resume.js";
-
 import ScrollWrapper from "./ScrollWrapper";
-
 import github_logo from "../res/github_logo.svg";
 import linked_logo from "../res/linkedin_logo.svg";
 import mailto_logo from "../res/mailTo.svg"
-
-import { Breadcrumb } from "antd";
 import { Flex, Button, Box } from "rebass";
-import { motion, Switch } from "framer-motion";
+import { motion } from "framer-motion";
 import AnchorLink from 'react-anchor-link-smooth-scroll'
+import styled from 'styled-components';
+
 
 import "./App.css";
 
+const TwoColumnContent = styled.div`
+    display: grid;
+    grid-template-columns: minmax(250px, 1fr) 1fr;
+    justify-items: center;
+    align-items: center;
 
-function titleSnippet() {
-  return (
-    <div className="snippet">
-      Hello World ... Welcome to my portfolio website :)
-    </div>
-  );
-}
+    @media (max-width: 1105px) {
+        grid-template-columns: 1fr;
+    }
 
+`
+
+const ThreeColumnContent = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    max-width: 300px;
+
+    @media (max-width: 1105px) {
+        grid-template-columns: 1fr;
+    }
+
+`
+
+// TODO similar to about section but align to edges of screen.
+// switch to vertical @media...
 function navButtons() {
   return (
     <Flex alignItems="center" px={3} py={4} bg="muted">
@@ -72,9 +79,9 @@ function navButtons() {
 function navBar() {
   return (
 
-        <Flex alignItems="center" px={3} py={4} bg="muted">
+        <TwoColumnContent>
           {navButtons()}
-            <Box mx="auto" />
+            <ThreeColumnContent>
             <motion.div
               className="container"
               whileHover={{ scale: 1.2, rotate: 0 }}
@@ -87,7 +94,7 @@ function navBar() {
                 category="Repos"
               />
             </motion.div>
-            &nbsp; &nbsp;
+          
             <motion.div
               className="container"
               whileHover={{ scale: 1.2, rotate: 0 }}
@@ -100,7 +107,7 @@ function navBar() {
                 category="LinkedIn"
               />
             </motion.div>
-            &nbsp; &nbsp;
+          
             <motion.div
               className="container"
               whileHover={{ scale: 1.2, rotate: 0 }}
@@ -113,7 +120,8 @@ function navBar() {
                 category="MailTo"
               />
             </motion.div>
-            </Flex>
+            </ThreeColumnContent>
+            </TwoColumnContent>
   )
 }
 
