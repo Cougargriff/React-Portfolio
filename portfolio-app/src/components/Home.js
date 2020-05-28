@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 const Title = styled.h1`
     padding-top: 400px;
+    font-size: 70px;
     color: white;
 `
 

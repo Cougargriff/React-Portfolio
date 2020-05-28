@@ -18,17 +18,18 @@
   font-family: 'Press Start 2P', sans-serif;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&display=swap');
-
-.headers {
-  font-family: 'DM Mono';
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@800&family=Roboto&display=swap');.headers {
+  font-family: 'Playfair Display';
   font-size: xx-large;
   text-align: center;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Open+Sans:wght@300;400&display=swap');
 .contents {
-  font-family: 'Open Sans';
+  font-family: 'Roboto';
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .App-header {
