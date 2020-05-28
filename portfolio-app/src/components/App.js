@@ -21,7 +21,7 @@ const TwoColumnContent = styled.div`
     justify-items: center;
     align-items: center;
 
-    @media (max-width: 1105px) {
+    @media (max-width: 550px) {
         grid-template-columns: 1fr;
     }
 
