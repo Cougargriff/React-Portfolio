@@ -1,5 +1,4 @@
 import React from "react";
-import Home from "./Home";
 
 
 import Projects from "./Projects.js";
@@ -54,15 +53,7 @@ const FixedSection = styled.section`
     background-color: white;
 `
 
-const TopSection = styled.section`
-    min-height: 1500px;
-    background-image: url(https://i.imgur.com/YabLT7b.jpg);
-    background-size: cover;
 
-    @media (max-width: 1105px) {
-      grid-template-columns: 1fr;
-  }
-`
 
 const ScrollWrapper = () => {
 
@@ -89,9 +80,6 @@ const ScrollWrapper = () => {
   //animate changes the state of the element
   return (
     <div>
-      <TopSection id="home">
-          <Home/>
-      </TopSection>
       <FixedSection  id="projects">
         <Projects/>
       </FixedSection>

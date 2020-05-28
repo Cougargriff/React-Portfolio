@@ -10,6 +10,7 @@ import linked_logo from "../res/linkedin_logo.svg";
 import mailto_logo from "../res/mailTo.svg"
 import { motion } from "framer-motion";
 import styled from 'styled-components';
+import Home from "./Home";
 
 import "./App.css";
 
@@ -63,7 +64,15 @@ const Button = styled.a`
     color: ${props => props.color}; 
   }
 `
+const TopSection = styled.section`
+    min-height: 1500px;
+    background-image: url(https://i.imgur.com/YabLT7b.jpg);
+    background-size: cover;
 
+    @media (max-width: 1105px) {
+      grid-template-columns: 1fr;
+  }
+`
 function navButtons() {
   return (
     <ThreeColumnContent>
@@ -142,9 +151,11 @@ function App() {
 
   return (
       <div className="App">
-        <section id="top">
         {navBar()}
-        </section>
+        <TopSection id="top">
+          
+          <Home/>
+        </TopSection>
         <ScrollWrapper />
       </div>
   );
