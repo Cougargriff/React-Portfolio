@@ -6,10 +6,27 @@ import React from 'react';
 import { Box, Button, Link, Card, Flex } from 'rebass'
 import Async from 'react-async';
 import colors from '../res/lang_colors.json'
+import styled from 'styled-components';
+
 
 import './Projects.css';
 
 const REPO_URL = "https://api.github.com/users/cougargriff/starred"
+
+
+const CardContainer = styled.div`
+display: grid;
+grid-template-columns: minmax(250px, 1fr) 1fr 1fr;
+justify-items: center;
+align-items: center;
+
+@media (max-width: 850px) {
+    grid-template-columns: 1fr;
+}
+`
+
+
+
 
 // CREDIT! ------> https://github.com/PimpTrizkit/PJs/wiki/12.-Shade,-Blend-and-Convert-a-Web-Color-(pSBC.js)#stackoverflow-archive-begin
 // MANY THANKS. My buttons look hella pro now
@@ -50,7 +67,7 @@ function languageDot(lang) {
 
 function formatProjectElements(data) {
     return (
-        <div>
+        <CardContainer>
             {data.map(repo => (
                 <div width={256} key={repo.name}>
                     <div>
@@ -75,27 +92,19 @@ function formatProjectElements(data) {
                     <br/><br/>
                 </div>
             ))}
-        </div>
+        </CardContainer>
     )
 }
 
 function cards() {
     return (
         <Async promiseFn={loadRepos}>
-            <Async.Loading> Loading Repos...</Async.Loading>
+            <Async.Loading>Loading Repos...</Async.Loading>
             <Async.Fulfilled>
                 {data => {
                     return (
-                            <Box
-                            sx={{
-                            gridGap: 4,
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(128px, 1fr))',
-                            }}>
-                                {formatProjectElements(data)}
-                            </Box>
-                       
-                    )
-                }}
+                        formatProjectElements(data)
+                    )}}
             </Async.Fulfilled>
             <Async.Rejected>
             </Async.Rejected>

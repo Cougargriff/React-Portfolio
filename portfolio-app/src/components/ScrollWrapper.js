@@ -76,9 +76,9 @@ const ExampleOne = () => {
           transition={{ duration: 2 }}
           variants={variantThree}
         >
-          <center>
-            <Projects/>
-          </center>
+
+          <Projects/>
+
         </motion.div>
       </section>
       <section ref={thirdRef} className="divThree" id="about">
