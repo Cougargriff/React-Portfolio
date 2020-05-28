@@ -3,13 +3,42 @@
 */
 
 import React from 'react';
-import { Box, Button, Link, Card, Flex } from 'rebass'
+import { Button, Link } from 'rebass'
 import Async from 'react-async';
 import colors from '../res/lang_colors.json'
+import styled from 'styled-components';
+
 
 import './Projects.css';
 
 const REPO_URL = "https://api.github.com/users/cougargriff/starred"
+
+
+const CardContainer = styled.div`
+display: grid;
+grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+justify-items: center;
+align-items: center;
+
+@media (max-width: 2500px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+@media (max-width: 1800px) {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media (max-width: 1200px) {
+    grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 850px) {
+    grid-template-columns: 1fr;
+}
+`
+
+
+
 
 // CREDIT! ------> https://github.com/PimpTrizkit/PJs/wiki/12.-Shade,-Blend-and-Convert-a-Web-Color-(pSBC.js)#stackoverflow-archive-begin
 // MANY THANKS. My buttons look hella pro now
@@ -40,51 +69,54 @@ function loadRepos() {
     .then(res => res.json())
 }
 
+function languageDot(lang) {
+    return (
+        <span className="dot" style={{
+            backgroundColor: colors[lang].color}}>   
+        </span>
+    )
+}
+
+function formatProjectElements(data) {
+    return (
+        <CardContainer>
+            {data.map(repo => (
+                <div width="256px" key={repo.name}>
+                    <div>
+                        <h3 className="contents">
+                            {repo.name}&ensp;
+                            {languageDot(repo.language)}
+                        &ensp;
+                        <span className="contents">{repo.language}</span>
+                        </h3>
+                    </div>
+                    <a className="contents">
+                        {repo.description}
+                    </a>
+                    <br/><br/>
+                    <Link href={repo.html_url}>
+                    <Button variant='primary' mr={2}sx={{
+                        backgroundColor: colors[repo.language].color,
+                        ':hover': {
+                        backgroundColor: shadeHexColor(colors[repo.language].color, 0.5),}
+                        }}>Check it out!</Button>
+                    </Link>
+                    <br/><br/>
+                </div>
+            ))}
+        </CardContainer>
+    )
+}
+
 function cards() {
     return (
         <Async promiseFn={loadRepos}>
-            <Async.Loading> Loading Repos...</Async.Loading>
+            <Async.Loading>Loading Repos...</Async.Loading>
             <Async.Fulfilled>
                 {data => {
                     return (
-                            <Box
-                            sx={{
-                            gridGap: 4,
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(128px, 1fr))',
-                            }}>
-                                {data.map(repo => (
-                                    <div width={256} key={repo.name}>
-                                        <div>
-                                            <h3 className="contents">
-                                                {repo.name}&ensp;
-                                                <span className="dot" style={{
-                                                backgroundColor: colors[repo.language].color
-                                            }}>   
-                                            </span>
-                                            &ensp;-&ensp;
-                                            <span className="contents">{repo.language}</span>
-                                            </h3>
-                                            
-                                        </div>
-                                        
-                                        <a className="contents">
-                                            {repo.description}
-                                        </a>
-                                        <br/><br/>
-                                        <Link href={repo.html_url}>
-                                        <Button variant='primary' mr={2}sx={{
-                                            backgroundColor: colors[repo.language].color,
-                                            ':hover': {
-                                            backgroundColor: shadeHexColor(colors[repo.language].color, 0.5),}
-                                            }}>Check it out!</Button>
-                                        </Link>
-                                        <br/><br/>
-                                    </div>
-                                ))}
-                            </Box>
-                       
-                    )
-                }}
+                        formatProjectElements(data)
+                    )}}
             </Async.Fulfilled>
             <Async.Rejected>
             </Async.Rejected>

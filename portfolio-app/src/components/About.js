@@ -3,24 +3,34 @@
 */
 
 import React from "react"
-import Paragraph from "antd/lib/skeleton/Paragraph"
 import styled from 'styled-components';
 
 const AboutSection = styled.div`
     text-align: center;
-    margin: 0;
 `
 
 const TwoColumnContent = styled.div`
-    display: grid,
+    display: grid;
     grid-template-columns: minmax(250px, 1fr) 1fr;
     justify-items: center;
     align-items: center;
+
+    @media (max-width: 1105px) {
+        grid-template-columns: 1fr;
+    }
+
 `
 
 const RoundedImage = styled.img`
-    border-radius: 30px;
+    border-radius: 8px;
     width: 400px;
+
+
+    margin-left: 200px;
+
+    @media (max-width: 1105px) {
+        margin-left: 0px;
+    }
 `
 
 const AboutDescription = styled.p`
@@ -29,6 +39,13 @@ const AboutDescription = styled.p`
     justify-self: start;
     align-self: start;
     padding: 10px 25px;
+
+    margin-right: 200px;
+
+    @media (max-width: 1105px) {
+        margin-right: 0px;
+    }
+    
 `
 
 function content() {

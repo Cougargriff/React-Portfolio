@@ -76,9 +76,9 @@ const ExampleOne = () => {
           transition={{ duration: 2 }}
           variants={variantThree}
         >
-          <center>
-            <Projects/>
-          </center>
+
+          <Projects/>
+
         </motion.div>
       </section>
       <section ref={thirdRef} className="divThree" id="about">
@@ -89,10 +89,8 @@ const ExampleOne = () => {
           //in this example, it takes a total of 4 seconds to complete animation
           transition={{ duration: 2 }}
           variants={variantThree}
-        >
-          <center>
+        >    
             <About/>
-          </center>
         </motion.div>
       </section>
       <section ref={fourthRef} className="divFour" id="resume">

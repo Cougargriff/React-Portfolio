@@ -1,15 +1,21 @@
 import React from 'react'; // Import the Component component from React
+import styled from 'styled-components';
 import './App.css';
  
+const PaddedDiv = styled.div`
+  padding: 4px;
+  margin: 0;
+`
+
 function Thumbnail(props) {
   return (
-    <div className="project">
-        <div className="project-image">
+    <PaddedDiv>
+        <div>
             <a href={props.link}>
                 <img src={props.image} alt="Project Image" width="50" />
             </a>
         </div>
-    </div>
+    </PaddedDiv>
   );
 }
  
