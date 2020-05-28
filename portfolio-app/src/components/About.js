@@ -30,6 +30,12 @@ const RoundedImage = styled.img`
 
     @media (max-width: 1105px) {
         margin-left: 0px;
+
+    }
+
+    @media (max-width: 400px) {
+        margin-left: 0px;
+        width: 250px;
     }
 `
 
@@ -51,10 +57,10 @@ const AboutDescription = styled.p`
 function content() {
     return (
         <AboutDescription className="contents">
-        I am a software engineer who recently graduated from Cal Poly SLO. 
-        Working on complex projects at Cal Poly has allowed me to develop a 
-        diverse set of skills that I am always looking to expand. My passion for software has
-        led me to create a variety of side projects including this very site.
+            I am a software engineer who recently graduated from Cal Poly SLO. 
+            Working on complex projects at Cal Poly has allowed me to develop a 
+            diverse set of skills that I am always looking to expand. My passion for software has
+            led me to create a variety of side projects including this very site.
         </AboutDescription>
     )
 }
@@ -69,8 +75,7 @@ function AboutTitle() {
 
 function profileImage() {
     return (
-        <RoundedImage src="https://avatars3.githubusercontent.com/u/19522316?s=460&u=91ca27a2b75351c39c6be24e870b10070c04a1f3&v=4">
-        </RoundedImage>
+        <RoundedImage src="https://avatars3.githubusercontent.com/u/19522316?s=460&u=91ca27a2b75351c39c6be24e870b10070c04a1f3&v=4"/>
     )
 }
 

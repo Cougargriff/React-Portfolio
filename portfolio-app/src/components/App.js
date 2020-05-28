@@ -8,11 +8,10 @@ import ScrollWrapper from "./ScrollWrapper";
 import github_logo from "../res/github_logo.svg";
 import linked_logo from "../res/linkedin_logo.svg";
 import mailto_logo from "../res/mailTo.svg"
-import { Flex, Button, Box } from "rebass";
+import { Button } from "rebass";
 import { motion } from "framer-motion";
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import styled from 'styled-components';
-
 
 import "./App.css";
 
@@ -32,19 +31,18 @@ const ThreeColumnContent = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     max-width: 300px;
+    padding-top: 20px;
 
     @media (max-width: 1105px) {
+        display: flex;
         grid-template-columns: 1fr;
     }
 
 `
 
-// TODO similar to about section but align to edges of screen.
-// switch to vertical @media...
 function navButtons() {
   return (
-    <Flex alignItems="center" px={3} py={4} bg="muted">
-    <Box mx="auto" />
+    <ThreeColumnContent>
     <AnchorLink href='#projects'>
       <Button ml={2} variant='primary' 
               sx={{
@@ -72,7 +70,7 @@ function navButtons() {
           }}>Resume
       </Button>
     </AnchorLink>
-  </Flex>
+    </ThreeColumnContent>
   );
 }
 
