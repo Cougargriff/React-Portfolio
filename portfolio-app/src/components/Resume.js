@@ -53,13 +53,14 @@ const Button = styled.a`
 `
 
 const TwoColumnContent = styled.div`
-    display: grid;
-    grid-template-columns: minmax(250px, 1fr) 1fr;
+    display: flex;
+    justify-content: space-between;
+ 
     justify-items: center;
     align-items: center;
 
     @media (max-width: 1105px) {
-        grid-template-columns: 1fr;
+      
     }
 `
 

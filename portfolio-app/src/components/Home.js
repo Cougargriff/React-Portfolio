@@ -6,13 +6,18 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Title = styled.h1`
-    padding-top: 400px;
     font-size: 70px;
-    color: white;
+`
+
+const HomeContainer = styled.div`
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 `
 
 const ObjectiveStatement = styled.h2`
-    color: white;
 `
 
 function contents() {
@@ -39,11 +44,10 @@ function title() {
 
 function Home(props) {
     return (
-        <div>
+        <HomeContainer>
             {title()}
-            <br/>
             {contents()}
-        </div>
+        </HomeContainer>
     )
 }
 
