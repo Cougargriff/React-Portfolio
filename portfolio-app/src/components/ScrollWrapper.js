@@ -1,5 +1,4 @@
 import React from "react";
-import Home from "./Home";
 
 
 import Projects from "./Projects.js";
@@ -13,22 +12,20 @@ function shadeHexColor(color, percent) {
   var f=parseInt(color.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF;
   return "#"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1);
 }
+
 const Button = styled.a`
 /* This renders the buttons above... Edit me! */
 display: inline-block;
 border-radius: 3px;
-padding: 0.5rem 0.5rem;
-margin: 0.5rem 1rem;
-background: transparent;
-background-color: #A3D9FF;
 color: white;
+padding: 0.5rem;
 border: 2px solid ${props => shadeHexColor(props.color, 0.3)};
 text-decoration: none;
-background-color: ${props => shadeHexColor(props.color, 0.3)};
+background: ${props => shadeHexColor(props.color, 0.3)};
 transition-duration: 0.4s;
 
 &:hover {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0) !important;
   color: ${props => props.color}; 
 }
 `
@@ -50,19 +47,12 @@ const FooterContainer = styled.a`
 `
 
 const FixedSection = styled.section`
-    min-height: 1000px;
-    background-color: white;
+    display: flex;
+    justify-content: center;
+    padding: 100px;
 `
 
-const TopSection = styled.section`
-    min-height: 1500px;
-    background-image: url(https://i.imgur.com/YabLT7b.jpg);
-    background-size: cover;
 
-    @media (max-width: 1105px) {
-      grid-template-columns: 1fr;
-  }
-`
 
 const ScrollWrapper = () => {
 
@@ -89,10 +79,6 @@ const ScrollWrapper = () => {
   //animate changes the state of the element
   return (
     <div>
-      <TopSection id="home">
-          <Home/>
-      </TopSection>
-
       <FixedSection  id="projects">
         <Projects/>
       </FixedSection>

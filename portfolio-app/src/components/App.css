@@ -28,8 +28,14 @@
   font-family: 'Roboto';
 }
 
+
 html {
   scroll-behavior: smooth;
+  width: 100%;
+}
+
+#root , body, .App {
+  width: 100%;
 }
 
 .App-header {

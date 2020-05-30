@@ -20,26 +20,12 @@ function shadeHexColor(color, percent) {
 }
 
 const CardContainer = styled.div`
-display: grid;
-grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-justify-items: center;
-align-items: center;
-
-@media (max-width: 2500px) {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-
-@media (max-width: 1800px) {
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-@media (max-width: 1200px) {
-    grid-template-columns: 1fr 1fr;
-}
-
-@media (max-width: 850px) {
-    grid-template-columns: 1fr;
-}
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px;
+    
 `
 
 const Button = styled.a`
@@ -62,6 +48,10 @@ const Button = styled.a`
   }
 `
 
+const ProjectCard = styled.div`
+    padding: 20px;
+    width: 250px;
+`
 
 
 function title() {
@@ -98,7 +88,7 @@ function formatProjectElements(data) {
     return (
         <CardContainer>
             {data.map(repo => (
-                <div width="256px" key={repo.name}>
+                <ProjectCard key={repo.name}>
                     <div>
                         <h3 className="contents">
                             {repo.name}&ensp;
@@ -113,12 +103,11 @@ function formatProjectElements(data) {
                     <br/><br/>
                     <Button  
                     href={repo.html_url}
-                    color={shadeHexColor(colors[repo.language].color, 0)}
-                    >
+                    color={shadeHexColor(colors[repo.language].color, 0)}>
                         Check it out!
                     </Button>
                     <br/><br/>
-                </div>
+                </ProjectCard>
             ))}
         </CardContainer>
     )
