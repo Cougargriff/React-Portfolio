@@ -122,7 +122,7 @@ function content() {
 }
 
 function loadRepos() {
-    console.log(process.env.ACCESS_TOKEN)
+    console.log(process)
     return fetch(GRAPHQL_URL, {
         method: 'POST',
         headers: {

@@ -53,9 +53,8 @@ const Button = styled.a`
 `
 
 const TwoColumnContent = styled.div`
-    display: flex;
+    display: block;
     justify-content: space-between;
- 
     justify-items: center;
     align-items: center;
 
