@@ -10,7 +10,7 @@ const Title = styled.h1`
 `
 
 const HomeContainer = styled.div`
-    height: 40vh;
+    height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;

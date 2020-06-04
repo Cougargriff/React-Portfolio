@@ -6,13 +6,11 @@ import React from 'react';
 import Async from 'react-async';
 import colors from '../res/lang_colors.json'
 import styled from 'styled-components';
-import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+
 
 
 import './Projects.css';
 
-const ACCESS_TOKEN = '8fc48fa72dca1269fd2e3665e205b42998729844';
 const REPO_URL = "https://api.github.com/users/cougargriff/starred";
 const GRAPHQL_URL = 'https://api.github.com/graphql';
 
@@ -88,6 +86,24 @@ const ProjectCard = styled.div`
     width: 250px;
 `
 
+const MultipleLangContainer = styled.div`
+  display: block;
+`
+
+const SingleLangContainer = styled.div`
+  display: contents;
+`
+const TitleContainer = styled.h3`
+  height: 60px;
+`
+const DescriptionContainer = styled.a`
+  height: 30px;
+  display: block;
+`
+
+const LangTitle = styled.a`
+  display: inline-block;
+`
 
 function title() {
     return (
@@ -106,23 +122,17 @@ function content() {
 }
 
 function loadRepos() {
-
+    console.log(process.env.ACCESS_TOKEN)
     return fetch(GRAPHQL_URL, {
         method: 'POST',
         headers: {
-            Authorization: `bearer ${ACCESS_TOKEN}`,
+            Authorization: `bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
         },
         body: JSON.stringify({
             query: GET_PINNED_REPOS
         })
     }).then(res => (res.ok ? res : Promise.reject(res)))
     .then(res => res.json())
-    
-    /* 
-    return fetch(REPO_URL)
-    .then(res => (res.ok ? res : Promise.reject(res)))
-    .then(res => res.json())
-    */
 }
 
 function languageDot(lang) {
@@ -133,47 +143,89 @@ function languageDot(lang) {
     )
 }
 
-function formatProjectElements(data) {
+function getLangs(langs) {
+    var res = [];
+    langs.map(lang => {
+        res.push(lang.name)
+    })
+    return res;
+}
 
-    console.log(data.data.user.pinnedItems.nodes[0].languages.nodes[0].name);
+function languages(langs) {
+    if(langs.length > 1) {
+        return (
+            <MultipleLangContainer>
+                {langs.map(lang => {
 
+                    return (
+                        <LangTitle>
+                            {languageDot(lang)}
+                            &ensp;
+                            <span className="contents">
+                                {lang}
+                            </span>
+                            &ensp;
+                        </LangTitle>
+
+                )})}
+            </MultipleLangContainer>
+        )
+    }
+    else {
+        return (
+            <SingleLangContainer>
+                {langs.map(lang => {
+
+                    return (
+                        <a>
+                            {languageDot(lang)}
+                            &ensp;
+                            <span className="contents">
+                                {lang}
+                            </span>
+                            &ensp;
+                        </a>
+
+                )})}
+            </SingleLangContainer>
+        )
+        
+    }
     
-    const res = data.data.user.pinnedItems.nodes;
+}
 
+function formatProjectElements(data) {
+    const res = data.data.user.pinnedItems.nodes;
     return (
         <CardContainer>
             {res.map(repo => {
-                const lang = repo.languages.nodes[0].name;
-
+                const langs = getLangs(repo.languages.nodes);
+                const langFirst = repo.languages.nodes[0].name;
                 return (
-                <ProjectCard key={repo.name}>
-                    <div>
-                        <h3 className="contents">
-                            {repo.name}&ensp;
-                            {languageDot(lang)}
-                        &ensp;
-                        <span className="contents">{lang}</span>
-                        </h3>
-                    </div>
-                    <a className="contents">
-                        {repo.description}
-                    </a>
-                    <br/><br/>
-                    <Button  
-                    href={repo.html_url}
-                    color={shadeHexColor(colors[lang].color, 0)}>
-                        Check it out!
-                    </Button>
-                    <br/><br/>
-                </ProjectCard>
+                    <ProjectCard key={repo.name}>
+                        <div>
+                            <TitleContainer className="contents">
+                                {repo.name}&ensp;
+                                {languages(langs)}
+                            </TitleContainer>
+                        </div>
+                        <DescriptionContainer className="contents">
+                            {repo.description}
+                        </DescriptionContainer>
+                        <br/><br/>
+                        <Button  
+                        href={repo.html_url}
+                        color={shadeHexColor(colors[langFirst].color, 0)}>
+                            Check it out!
+                        </Button>
+                        <br/><br/>
+                    </ProjectCard>
             )})}
         </CardContainer>
     )
 }
 
-function cards(data, loading, error) {
-
-    
+function cards() {
     return (
         <Async promiseFn={loadRepos}>
             <Async.Loading>Loading Repos...</Async.Loading>
