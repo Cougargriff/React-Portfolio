@@ -2,19 +2,17 @@
     src/components/Projects.js
 */
 
-import React from 'react';
-import Async from 'react-async';
+import React, { Component } from 'react';
 import colors from '../res/lang_colors.json'
 import styled from 'styled-components';
-
-
-
+import { connect } from "react-redux";
 import './Projects.css';
+import { fetchProjects } from '../store/actions/ProjectActions';
 
-const REPO_URL = "https://api.github.com/users/cougargriff/starred";
+
+/* graphql query for pinned repos 
+
 const GRAPHQL_URL = 'https://api.github.com/graphql';
-
-/* graphql query for pinned repos */
 const GET_PINNED_REPOS = `
 {
     user(login: "cougargriff") 
@@ -43,7 +41,7 @@ const GET_PINNED_REPOS = `
     }
 }
 `
-
+*/
 
 // CREDIT! ------> https://github.com/PimpTrizkit/PJs/wiki/12.-Shade,-Blend-and-Convert-a-Web-Color-(pSBC.js)#stackoverflow-archive-begin
 // MANY THANKS. My buttons look hella pro now
@@ -83,7 +81,7 @@ const Button = styled.a`
 
 const ProjectCard = styled.div`
     padding: 20px;
-    width: 250px;
+    width: 350px;
 `
 
 const MultipleLangContainer = styled.div`
@@ -121,19 +119,7 @@ function content() {
     )
 }
 
-function loadRepos() {
-    console.log(process)
-    return fetch(GRAPHQL_URL, {
-        method: 'POST',
-        headers: {
-            Authorization: `bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-        },
-        body: JSON.stringify({
-            query: GET_PINNED_REPOS
-        })
-    }).then(res => (res.ok ? res : Promise.reject(res)))
-    .then(res => res.json())
-}
+
 
 function languageDot(lang) {
     return (
@@ -177,10 +163,10 @@ function languages(langs) {
                 {langs.map(lang => {
 
                     return (
-                        <a>
+                        <a key={lang}>
                             {languageDot(lang)}
                             &ensp;
-                            <span className="contents">
+                            <span key={lang} className="contents">
                                 {lang}
                             </span>
                             &ensp;
@@ -195,12 +181,10 @@ function languages(langs) {
 }
 
 function formatProjectElements(data) {
-    const res = data.data.user.pinnedItems.nodes;
     return (
         <CardContainer>
-            {res.map(repo => {
-                const langs = getLangs(repo.languages.nodes);
-                const langFirst = repo.languages.nodes[0].name;
+            {data.map(repo => {
+                const langs = [repo.language];
                 return (
                     <ProjectCard key={repo.name}>
                         <div>
@@ -214,8 +198,8 @@ function formatProjectElements(data) {
                         </DescriptionContainer>
                         <br/><br/>
                         <Button  
-                        href={repo.html_url}
-                        color={shadeHexColor(colors[langFirst].color, 0)}>
+                        href={repo.html}
+                        color={shadeHexColor(colors[repo.language].color, 0)}>
                             Check it out!
                         </Button>
                         <br/><br/>
@@ -225,33 +209,56 @@ function formatProjectElements(data) {
     )
 }
 
-function cards() {
-    return (
-        <Async promiseFn={loadRepos}>
-            <Async.Loading>Loading Repos...</Async.Loading>
-            <Async.Fulfilled>
-                {data => {
-                    return (
-                        formatProjectElements(data)
-                    )}}
-            </Async.Fulfilled>
-            <Async.Rejected>
-            </Async.Rejected>
-        </Async>
-    )
-    
+
+
+class Projects extends Component {
+    componentDidMount() {
+        this.loadRepos();
+    }
+
+    loadRepos = () => {
+
+        const { dispatch } = this.props;
+        dispatch(fetchProjects());
+    }
+
+    cards = () => {
+        if(!this.props.fetchedProjects) {
+            return (
+                <div>
+                    <h4>
+                        Loading Repos...
+                    </h4>
+                </div>
+            )
+        }
+        else
+        {
+            return (
+                <div>
+                    {formatProjectElements(this.props.projects)}
+                </div>
+            )
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                {title()}
+                {this.cards()}
+            </div>
+        )
+    }
 }
 
-function Projects(props) {
-
-
-    
-    return (
-        <div>
-            {title()}
-            {cards()}
-        </div>
-    )
+function mapStateToProps(state) {
+    return {
+        isFetchingProjects: state.ProjectReducer.isFetchingProjects,
+        fetchedProjects: state.ProjectReducer.fetchedProjects,
+        projects: state.ProjectReducer.projects,
+    }
 }
 
-export default Projects;
+
+export default connect(mapStateToProps)(Projects);
