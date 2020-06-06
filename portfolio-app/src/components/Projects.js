@@ -74,12 +74,22 @@ const Button = styled.a`
   transition-duration: 0.4s;
 
   &:hover {
+      cursor: pointer;
     background-color: white;
     color: ${props => props.color};
   }
 `
 
 const ProjectCard = styled.div`
+    
+
+    &:hover {
+        -webkit-box-shadow: 0px 1px 35px -14px rgba(0,0,0,0.4);
+        -moz-box-shadow: 0px 1px 35px -14px rgba(0,0,0,0.4);
+        box-shadow: 0px 1px 35px -14px rgba(0,0,0,0.4);
+    }
+    transition-duration: 0.4s;
+    border-radius: 8px;
     padding: 20px;
     width: 350px;
 `
@@ -118,8 +128,6 @@ function content() {
     </a>
     )
 }
-
-
 
 function languageDot(lang) {
     return (
@@ -198,7 +206,7 @@ function formatProjectElements(data) {
                         </DescriptionContainer>
                         <br/><br/>
                         <Button  
-                        href={repo.html}
+                        href={repo.link}
                         color={shadeHexColor(colors[repo.language].color, 0)}>
                             Check it out!
                         </Button>
@@ -232,8 +240,7 @@ class Projects extends Component {
                 </div>
             )
         }
-        else
-        {
+        else {
             return (
                 <div>
                     {formatProjectElements(this.props.projects)}
