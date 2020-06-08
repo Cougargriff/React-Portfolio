@@ -188,7 +188,7 @@ function formatProjectElements(data) {
     return (
         <CardContainer>
             {data.map(repo => {
-                const langs = [repo.language];
+                const langs = repo.languages;
                 return (
                     <ProjectCard key={repo.name}>
                         <div>
@@ -203,7 +203,7 @@ function formatProjectElements(data) {
                         <br/><br/>
                         <Button  
                         href={repo.link}
-                        color={shadeHexColor(colors[repo.language].color, 0)}>
+                        color={shadeHexColor(colors[repo.languages[0]].color, 0)}>
                             Check it out!
                         </Button>
                         <br/><br/>

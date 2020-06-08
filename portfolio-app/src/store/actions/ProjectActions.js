@@ -1,7 +1,14 @@
 import {
     FETCH_PROJECTS_REQUEST,
     FETCH_PROJECTS_SUCCESS,
-    FETCH_PROJECTS_FAILURE
+    FETCH_PROJECTS_FAILURE,
+    LOAD_PROJECT_COMMITS_REQUEST,
+    LOAD_PROJECT_COMMITS_SUCCESS,
+    LOAD_PROJECT_COMMITS_FAILURE,
+    LOAD_PROJECT_LANGS_REQUEST,
+    LOAD_PROJECT_LANGS_SUCCESS,
+    LOAD_PROJECT_LANGS_FAILURE,
+    FINISHED_LOADING_PROJECTS
 } from './Types';
 
 /*
@@ -26,7 +33,61 @@ const projectsError = () => {
     };
 };
 
-const REPO_URL = "https://api.github.com/users/cougargriff/starred"
+const projectCommitsError = (err) => {
+    return {
+        type: LOAD_PROJECT_COMMITS_FAILURE,
+        err
+    };
+};
+
+const recieveProjectCommits = (name, commit_count, index) => {
+    return {
+        type: LOAD_PROJECT_COMMITS_SUCCESS,
+        name,
+        commit_count,
+        index
+    };
+};
+
+const requestProjectCommits = (name) => {
+    return {
+        type: LOAD_PROJECT_COMMITS_REQUEST,
+        name
+    };
+};
+
+const projectLangsError = (err) => {
+    return {
+        type: LOAD_PROJECT_LANGS_FAILURE,
+        err
+    };
+};
+
+const recieveProjectLangs = (name, langs, index) => {
+    return {
+        type: LOAD_PROJECT_LANGS_SUCCESS,
+        name,
+        langs,
+        index
+    };
+};
+
+const requestProjectLangs = (name) => {
+    return {
+        type: LOAD_PROJECT_LANGS_REQUEST,
+        name
+    };
+};
+
+const finishedLoadingProjectData = () => {
+    return {
+        type: FINISHED_LOADING_PROJECTS,
+    }
+}
+
+
+
+const PROJECTS_URL = "https://api.github.com/users/cougargriff/starred"
 
 /* 
     Action creator function to call from component class
@@ -34,23 +95,66 @@ const REPO_URL = "https://api.github.com/users/cougargriff/starred"
 */
 export const fetchProjects = () => (dispatch) => {
     dispatch(requestProjects());
-    fetch(REPO_URL)
+    fetch(PROJECTS_URL)
     .then(res => (res.ok ? res : Promise.reject(res)))
     .then(res => res.json())
     .then(res => {
         const projects = [];
         res.map(repo => {
-            const prj = {
+            projects.push({
                 name: repo.name,
-                language: repo.language,
+                languages: [repo.language],
                 description: repo.description,
-                link: repo.html_url
-            };
-            projects.push(prj);
+                link: repo.html_url,
+                api_url: repo.url
+            });
         })
+        /* 
+            need to dispatch finishedLoadingProjects after 
+            getting commit and lang data for individual projects
+        */
         dispatch(receiveProjects(projects));
+        dispatch(getProjectCommits(projects));
+        dispatch(getProjectLangs(projects));
+        // dispatch(finishedLoadingProjectData());
     })
     .catch((error) => {
         dispatch(projectsError());
     });
 };
+
+const getProjectCommits = (projects) => (dispatch) => {
+    projects.map((prj, index) => {
+        dispatch(requestProjectCommits(prj.name));
+        fetch(prj.api_url + "/stats/contributors")
+            .then(res => (res.ok ? res : Promise.reject(res)))
+            .then(res => res.json())
+            .then(res => {
+                let commit_count = 0;
+                res.map(contributor => {
+                    commit_count += contributor.total;
+                })
+                dispatch(recieveProjectCommits(prj.name, commit_count, index));
+            })
+            .catch((error) => {
+                dispatch(projectCommitsError(error));
+            });
+        
+        
+    });
+};
+
+const getProjectLangs = (projects) => (dispatch) => {
+    projects.map((prj, index) => {
+        dispatch(requestProjectLangs(prj.name));
+        fetch(prj.api_url + "/languages")
+            .then(res => (res.ok ? res : Promise.reject(res)))
+            .then(res => res.json())
+            .then(res => {
+                dispatch(recieveProjectLangs(prj.name, Object.keys(res), index))
+            })
+            .catch((error) => {
+                dispatch(projectLangsError(error));
+            })
+    })
+}
