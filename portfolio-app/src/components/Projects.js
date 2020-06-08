@@ -150,7 +150,7 @@ function languages(langs) {
                 {langs.map(lang => {
 
                     return (
-                        <LangTitle>
+                        <LangTitle key={lang}>
                             {languageDot(lang)}
                             &ensp;
                             <span className="contents">

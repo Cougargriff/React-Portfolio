@@ -40,7 +40,6 @@ const projectsReducer = (state = initProjectState, action) => {
             return {
                 ...state,
                 isFetchingProjects: false,
-                fetchedProjects: true,
                 projects: action.projects
             };
         case FETCH_PROJECTS_REQUEST:
@@ -59,7 +58,7 @@ const projectsReducer = (state = initProjectState, action) => {
             /*
                 Update project's commit count at position index
             */
-            const COMMITS_PROJECTS = state.projects;
+            const COMMITS_PROJECTS = [...state.projects];
             COMMITS_PROJECTS[action.index].commits = action.commit_count;
             return {
                 ...state,
@@ -86,7 +85,7 @@ const projectsReducer = (state = initProjectState, action) => {
                 projects request. Projects with more than one language
                 are obtained through this action and subsequent api request.
             */
-            const LANGS_PROJECTS = state.projects;
+            const LANGS_PROJECTS = [...state.projects];
             LANGS_PROJECTS[action.index].languages = action.langs;
             return {
                 ...state,

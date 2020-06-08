@@ -116,7 +116,7 @@ export const fetchProjects = () => (dispatch) => {
         dispatch(receiveProjects(projects));
         dispatch(getProjectCommits(projects));
         dispatch(getProjectLangs(projects));
-        // dispatch(finishedLoadingProjectData());
+        dispatch(finishedLoadingProjectData());
     })
     .catch((error) => {
         dispatch(projectsError());
