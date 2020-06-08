@@ -8,7 +8,6 @@ import {
     LOAD_PROJECT_LANGS_REQUEST,
     LOAD_PROJECT_LANGS_SUCCESS,
     LOAD_PROJECT_LANGS_FAILURE,
-    FINISHED_LOADING_PROJECTS
 } from '../actions/Types';
 
 const initProjectState = {
@@ -40,6 +39,7 @@ const projectsReducer = (state = initProjectState, action) => {
             return {
                 ...state,
                 isFetchingProjects: false,
+                fetchedProjects: true,
                 projects: action.projects
             };
         case FETCH_PROJECTS_REQUEST:
@@ -98,11 +98,6 @@ const projectsReducer = (state = initProjectState, action) => {
                 isLoadingProjectLangs: false,
                 loadProjectLangsError: true,
             };
-        case FINISHED_LOADING_PROJECTS:
-            return {
-                ...state,
-                fetchedProjects: true
-            }
         default:
             return state;
     }
