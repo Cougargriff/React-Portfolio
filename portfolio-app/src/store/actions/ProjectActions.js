@@ -7,8 +7,7 @@ import {
     LOAD_PROJECT_COMMITS_FAILURE,
     LOAD_PROJECT_LANGS_REQUEST,
     LOAD_PROJECT_LANGS_SUCCESS,
-    LOAD_PROJECT_LANGS_FAILURE,
-    FINISHED_LOADING_PROJECTS
+    LOAD_PROJECT_LANGS_FAILURE
 } from './Types';
 
 /*
@@ -79,11 +78,6 @@ const requestProjectLangs = (name) => {
     };
 };
 
-const finishedLoadingProjectData = () => {
-    return {
-        type: FINISHED_LOADING_PROJECTS,
-    }
-}
 
 
 
@@ -116,7 +110,6 @@ export const fetchProjects = () => (dispatch) => {
         dispatch(receiveProjects(projects));
         dispatch(getProjectCommits(projects));
         dispatch(getProjectLangs(projects));
-        dispatch(finishedLoadingProjectData());
     })
     .catch((error) => {
         dispatch(projectsError());
