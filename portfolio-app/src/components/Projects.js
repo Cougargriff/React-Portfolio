@@ -1,54 +1,12 @@
 /*
     src/components/Projects.js
 */
-
 import React, { Component } from 'react';
 import colors from '../res/lang_colors.json'
 import styled from 'styled-components';
 import { connect } from "react-redux";
-import './Projects.css';
+import ColorButton from "./ColorButton";
 import { fetchProjects } from '../store/actions/ProjectActions';
-
-
-/* graphql query for pinned repos 
-
-const GRAPHQL_URL = 'https://api.github.com/graphql';
-const GET_PINNED_REPOS = `
-{
-    user(login: "cougargriff") 
-    {
-        pinnedItems(first: 6, types: REPOSITORY) 
-        {
-            nodes 
-            {
-                ... on Repository 
-                {
-                    name
-                    description
-                    createdAt
-                    url
-                    languages(first:5) 
-                    {
-                        nodes
-                        {
-                            name
-                        }
-                    }
-
-                }
-            }
-        }
-    }
-}
-`
-*/
-
-// CREDIT! ------> https://github.com/PimpTrizkit/PJs/wiki/12.-Shade,-Blend-and-Convert-a-Web-Color-(pSBC.js)#stackoverflow-archive-begin
-// MANY THANKS. My buttons look hella pro now
-function shadeHexColor(color, percent) {
-    var f=parseInt(color.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF;
-    return "#"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1);
-}
 
 const CardContainer = styled.div`
     display: flex;
@@ -57,27 +15,6 @@ const CardContainer = styled.div`
     justify-content: space-evenly;
     padding: 20px;
     
-`
-
-const Button = styled.a`
-  /* This renders the buttons above... Edit me! */
-  display: inline-block;
-  border-radius: 3px;
-  padding: 0.5rem 0.5rem;
-  margin: 0.5rem 1rem;
-  background: transparent;
-  background-color: #A3D9FF;
-  color: white;
-  border: 2px solid ${props => shadeHexColor(props.color, 0.3)};
-  text-decoration: none;
-  background-color: ${props => shadeHexColor(props.color, 0.3)};
-  transition-duration: 0.4s;
-
-  &:hover {
-      cursor: pointer;
-    background-color: white;
-    color: ${props => props.color};
-  }
 `
 
 const ProjectCard = styled.div`
@@ -110,7 +47,13 @@ const DescriptionContainer = styled.a`
 const LangTitle = styled.a`
   display: inline-block;
 `
-
+const Dot = styled.span`
+    background-color: ${props => props.color};
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+`
 function title() {
     return (
         <h1 className="headers">
@@ -119,19 +62,9 @@ function title() {
     )
 }
 
-function content() {
-    return (
-    <a className="contents">
-                Here lies my pinned respositories pulled live from github :)
-    </a>
-    )
-}
-
 function languageDot(lang) {
     return (
-        <span className="dot" style={{
-            backgroundColor: colors[lang].color}}>   
-        </span>
+        <Dot color={colors[lang].color}/>
     )
 }
 
@@ -201,11 +134,10 @@ function formatProjectElements(data) {
                             {repo.description}
                         </DescriptionContainer>
                         <br/><br/>
-                        <Button  
+                        <ColorButton  
                         href={repo.link}
-                        color={shadeHexColor(colors[repo.languages[0]].color, 0)}>
-                            Check it out!
-                        </Button>
+                        color={colors[repo.languages[0]].color}
+                        text='Check it out!'/>
                         <br/><br/>
                     </ProjectCard>
             )})}
@@ -213,15 +145,12 @@ function formatProjectElements(data) {
     )
 }
 
-
-
 class Projects extends Component {
     componentDidMount() {
         this.loadRepos();
     }
 
     loadRepos = () => {
-
         const { dispatch } = this.props;
         dispatch(fetchProjects());
     }
@@ -230,7 +159,7 @@ class Projects extends Component {
         if(!this.props.fetchedProjects) {
             return (
                 <div>
-                    <h4>
+                    <h4 className="contents">
                         Loading Repos...
                     </h4>
                 </div>
@@ -262,6 +191,5 @@ function mapStateToProps(state) {
         projects: state.ProjectReducer.projects,
     }
 }
-
 
 export default connect(mapStateToProps)(Projects);
