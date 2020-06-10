@@ -1,7 +1,6 @@
 import React from 'react'; // Import the Component component from React
 import styled from 'styled-components';
-import './App.css';
- 
+
 const PaddedDiv = styled.div`
   padding: 4px;
   margin: 0;

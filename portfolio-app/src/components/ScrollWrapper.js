@@ -1,34 +1,9 @@
 import React from "react";
-
-
 import Projects from "./Projects.js";
 import About from "./About.js";
 import Resume from "./Resume.js";
 import styled from 'styled-components';
-
-// CREDIT! ------> https://github.com/PimpTrizkit/PJs/wiki/12.-Shade,-Blend-and-Convert-a-Web-Color-(pSBC.js)#stackoverflow-archive-begin
-// MANY THANKS. My buttons look hella pro now
-function shadeHexColor(color, percent) {
-  var f=parseInt(color.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF;
-  return "#"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1);
-}
-
-const Button = styled.a`
-/* This renders the buttons above... Edit me! */
-display: inline-block;
-border-radius: 3px;
-color: white;
-padding: 0.5rem;
-border: 2px solid ${props => shadeHexColor(props.color, 0.3)};
-text-decoration: none;
-background: ${props => shadeHexColor(props.color, 0.3)};
-transition-duration: 0.4s;
-
-&:hover {
-  background-color: rgba(255, 255, 255, 0) !important;
-  color: ${props => props.color}; 
-}
-`
+import ColorButton from "./ColorButton";
 
 const TwoColumnContent = styled.div`
     display: grid;
@@ -52,12 +27,7 @@ const FixedSection = styled.section`
     padding: 100px;
 `
 
-
-
 const ScrollWrapper = () => {
-
-
-
   function tagLine() {
     return (
       <FooterContainer>
@@ -74,9 +44,6 @@ const ScrollWrapper = () => {
     )
   }
 
-  //framer motion elements have initial, animate, and varaints properties
-  //initial is the initial state
-  //animate changes the state of the element
   return (
     <div>
       <FixedSection  id="projects">
@@ -92,10 +59,9 @@ const ScrollWrapper = () => {
       </FixedSection>
       <section>
         <TwoColumnContent>
-              <Button href='#top'
-              color='#ff6347'>
-                Back to Top
-              </Button>
+          <ColorButton href='#top'
+          color='#ff6347'
+          text='Back to Top'/>
           {contactInfo()}
           {tagLine()}
         </TwoColumnContent>
