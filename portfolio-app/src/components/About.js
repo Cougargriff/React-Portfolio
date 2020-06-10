@@ -4,6 +4,7 @@
 
 import React from "react"
 import styled from 'styled-components';
+import Portrait from '../res/portrait.jpg';
 
 const AboutSection = styled.div`
     text-align: center;
@@ -11,7 +12,7 @@ const AboutSection = styled.div`
 
 const TwoColumnContent = styled.div`
     display: grid;
-    grid-template-columns: minmax(250px, 1fr) 1fr;
+    grid-template-columns: 1fr 200px 1fr;
     justify-items: center;
     align-items: center;
 
@@ -24,7 +25,7 @@ const TwoColumnContent = styled.div`
 const RoundedImage = styled.img`
     border-radius: 8px;
     width: 400px;
-    margin-left: 200px;
+    opacity: 95%;
 
     @media (max-width: 1400px) {
         margin-left: 0px;
@@ -35,15 +36,20 @@ const RoundedImage = styled.img`
         width: 250px;
     }
 `
+const Space = styled.div`
+    width: 200px;
+`
 
-const AboutDescription = styled.p`
+const Container = styled.div`
+    align-content: center;
+`
+
+const AboutDescription = styled.div`
     font-size: 18px;
     line-height: 1.6;
-    justify-self: start;
-    align-self: start;
     padding: 10px 25px;
-
-    margin-right: 200px;
+    align-text: center;
+    width: 400px;
 
     @media (max-width: 1400px) {
         margin-right: 0px;
@@ -72,7 +78,7 @@ function AboutTitle() {
 
 function profileImage() {
     return (
-        <RoundedImage src="https://avatars3.githubusercontent.com/u/19522316?s=460&u=91ca27a2b75351c39c6be24e870b10070c04a1f3&v=4"/>
+        <RoundedImage src={Portrait}/>
     )
 }
 
@@ -82,7 +88,11 @@ function About(props) {
             {AboutTitle()}
             <TwoColumnContent>
                 {profileImage()}
-                {content()}
+                <Space/>
+                <Container>
+                    {content()}
+                </Container>
+                
             </TwoColumnContent>
         </AboutSection>
     )

@@ -8,6 +8,9 @@ import { connect } from "react-redux";
 import ColorButton from "./ColorButton";
 import { fetchProjects } from '../store/actions/ProjectActions';
 
+import commitLogo from '../res/commit.png';
+import contributorsLogo from '../res/people.png';
+
 const CardContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -37,16 +40,30 @@ const SingleLangContainer = styled.div`
   display: contents;
 `
 const TitleContainer = styled.h3`
-  height: 60px;
+  height: 40px;
 `
 const DescriptionContainer = styled.a`
   height: 30px;
   display: block;
+  opacity: 90%;
 `
 
 const LangTitle = styled.a`
   display: inline-block;
 `
+const Container = styled.div`
+    display: inline-flex;
+    opacity: 70%;
+`
+
+const CommitLogo = styled.img`
+    align-self: end;
+`
+
+const PeopleLogo = styled.img`
+    align-self: end;
+`
+
 const Dot = styled.span`
     background-color: ${props => props.color};
     height: 15px;
@@ -75,6 +92,8 @@ function getLangs(langs) {
     })
     return res;
 }
+
+
 
 function languages(langs) {
     if(langs.length > 1) {
@@ -124,12 +143,16 @@ function formatProjectElements(data) {
                 const langs = repo.languages;
                 return (
                     <ProjectCard key={repo.name}>
-                        <div>
-                            <TitleContainer className="contents">
-                                {repo.name}&ensp;
-                                {languages(langs)}
-                            </TitleContainer>
-                        </div>
+                        
+                        <TitleContainer className="contents">
+                            {repo.name}&ensp;
+                            {languages(langs)}
+                        </TitleContainer>
+                        <Container>
+                            <CommitLogo src={commitLogo}/> &ensp; {repo.commits} &ensp; &ensp;
+                            <PeopleLogo src={contributorsLogo}/>  &ensp; {repo.contributor_count}
+                        </Container>
+                        
                         <DescriptionContainer className="contents">
                             {repo.description}
                         </DescriptionContainer>
