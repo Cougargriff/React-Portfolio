@@ -81,13 +81,6 @@ const Button = styled.a`
   }
 `
 
-const FourColumnContent = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    justify-items: center;
-    align-items: center;
-`
-
 const ProjectCard = styled.div`
     &:hover {
         -webkit-box-shadow: 0px 1px 35px -14px rgba(0,0,0,0.4);
