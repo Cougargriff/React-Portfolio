@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import './Projects.css';
 import { fetchProjects } from '../store/actions/ProjectActions';
 import commitLogo from '../res/commit.png';
+import contributorsLogo from '../res/people.png';
 
 /* graphql query for pinned repos 
 
@@ -80,6 +81,13 @@ const Button = styled.a`
   }
 `
 
+const FourColumnContent = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+`
+
 const ProjectCard = styled.div`
     &:hover {
         -webkit-box-shadow: 0px 1px 35px -14px rgba(0,0,0,0.4);
@@ -114,6 +122,14 @@ const LangTitle = styled.a`
 const Container = styled.div`
     display: inline-flex;
     opacity: 70%;
+`
+
+const CommitLogo = styled.img`
+    align-self: end;
+`
+
+const PeopleLogo = styled.img`
+    align-self: end;
 `
 
 function title() {
@@ -204,8 +220,8 @@ function formatProjectElements(data) {
                             {languages(langs)}
                         </TitleContainer>
                         <Container>
-                            <img src={commitLogo}/> 
-                                &ensp; {repo.commits}
+                            <CommitLogo src={commitLogo}/> &ensp; {repo.commits} &ensp; &ensp;
+                            <PeopleLogo src={contributorsLogo}/>  &ensp; {repo.contributor_count}
                         </Container>
                         
                         <DescriptionContainer className="contents">

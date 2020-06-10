@@ -39,11 +39,12 @@ const projectCommitsError = (err) => {
     };
 };
 
-const recieveProjectCommits = (name, commit_count, index) => {
+const recieveProjectCommits = (name, commit_count, contributor_count, index) => {
     return {
         type: LOAD_PROJECT_COMMITS_SUCCESS,
         name,
         commit_count,
+        contributor_count,
         index
     };
 };
@@ -124,10 +125,12 @@ const getProjectCommits = (projects) => (dispatch) => {
             .then(res => res.json())
             .then(res => {
                 let commit_count = 0;
+                let contributor_count = 0;
                 res.map(contributor => {
                     commit_count += contributor.total;
+                    contributor_count += 1;
                 })
-                dispatch(recieveProjectCommits(prj.name, commit_count, index));
+                dispatch(recieveProjectCommits(prj.name, commit_count, contributor_count, index));
             })
             .catch((error) => {
                 dispatch(projectCommitsError(error));

@@ -60,6 +60,7 @@ const projectsReducer = (state = initProjectState, action) => {
             */
             const COMMITS_PROJECTS = [...state.projects];
             COMMITS_PROJECTS[action.index].commits = action.commit_count;
+            COMMITS_PROJECTS[action.index].contributor_count = action.contributor_count;
             return {
                 ...state,
                 isLoadingProjectCommits: false,
