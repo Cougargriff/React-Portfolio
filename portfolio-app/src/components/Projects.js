@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import { connect } from "react-redux";
 import './Projects.css';
 import { fetchProjects } from '../store/actions/ProjectActions';
-
+import commitLogo from '../res/commit.png';
 
 /* graphql query for pinned repos 
 
@@ -100,15 +100,20 @@ const SingleLangContainer = styled.div`
   display: contents;
 `
 const TitleContainer = styled.h3`
-  height: 60px;
+  height: 40px;
 `
 const DescriptionContainer = styled.a`
   height: 30px;
   display: block;
+  opacity: 90%;
 `
 
 const LangTitle = styled.a`
   display: inline-block;
+`
+const Container = styled.div`
+    display: inline-flex;
+    opacity: 70%;
 `
 
 function title() {
@@ -142,6 +147,8 @@ function getLangs(langs) {
     })
     return res;
 }
+
+
 
 function languages(langs) {
     if(langs.length > 1) {
@@ -191,16 +198,21 @@ function formatProjectElements(data) {
                 const langs = repo.languages;
                 return (
                     <ProjectCard key={repo.name}>
-                        <div>
-                            <TitleContainer className="contents">
-                                {repo.name}&ensp;
-                                {languages(langs)}
-                            </TitleContainer>
-                        </div>
+                        
+                        <TitleContainer className="contents">
+                            {repo.name}&ensp;
+                            {languages(langs)}
+                        </TitleContainer>
+                        <Container>
+                            <img src={commitLogo}/> 
+                                &ensp; {repo.commits}
+                        </Container>
+                        
                         <DescriptionContainer className="contents">
                             {repo.description}
                         </DescriptionContainer>
                         <br/><br/>
+                        
                         <Button  
                         href={repo.link}
                         color={shadeHexColor(colors[repo.languages[0]].color, 0)}>
