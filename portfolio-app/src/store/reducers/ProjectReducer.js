@@ -36,6 +36,7 @@ const projectsReducer = (state = initProjectState, action) => {
         fetchProjectsError: true,
       };
     case FETCH_PROJECTS_SUCCESS:
+      console.log(action.projects)
       return {
         ...state,
         isFetchingProjects: false,
