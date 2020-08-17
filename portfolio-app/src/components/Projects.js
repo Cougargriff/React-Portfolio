@@ -9,7 +9,7 @@ import ColorButton from "./ColorButton";
 import { fetchProjects } from "../store/actions/ProjectActions";
 
 import commitLogo from "../res/commit.png";
-import contributorsLogo from "../res/people.png";
+import contributorsLogo from "../res/contributors.png";
 
 const CardContainer = styled.div`
   display: flex;

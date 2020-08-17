@@ -92,9 +92,8 @@ const PROJECTS_URL = "https://api.github.com/users/cougargriff/starred";
 */
 export const fetchProjects = () => async (dispatch) => {
   dispatch(requestProjects());
-  let projects1 = await getProjects([]);
-  let projects2 = await getMetaData(projects1);
-  dispatch(receiveProjects(projects2));
+  let projects = await getMetaData(await getProjects([]));
+  dispatch(receiveProjects(projects));
 };
 
 const getMetaData = async (projects) => {
@@ -107,7 +106,7 @@ const getProjects = async (projects) => {
   return fetch(PROJECTS_URL)
     .then((res) => (res.ok ? res : Promise.reject(res)))
     .then((res) => res.json())
-    .then(async (res) => {
+    .then((res) => {
       res.map((repo) => {
         projects.push({
           name: repo.name,
@@ -117,15 +116,25 @@ const getProjects = async (projects) => {
           api_url: repo.url,
         });
       });
-      return projects;
+      return Promise.resolve(projects);
     })
     .catch((error) => {});
 };
 
 const getCommits = async (projects) => {
   return Promise.all(
-    projects.map((prj, index) => {
-      fetch(prj.api_url + "/stats/contributors")
+    projects.map(async (prj) => await grabPrjCommits(prj))
+  );
+};
+
+const getLangs = async (projects) => {
+  return Promise.all(
+    projects.map(async (prj) => await grabPrjLangs(prj))
+  );
+};
+
+const grabPrjCommits = async (prj) => {
+  return fetch(prj.api_url + "/stats/contributors")
         .then((res) => (res.ok ? res : Promise.reject(res)))
         .then((res) => res.json())
         .then((res) => {
@@ -137,67 +146,20 @@ const getCommits = async (projects) => {
           });
           prj.contributor_count = contributor_count;
           prj.commits = commit_count;
-          return prj;
+          return Promise.resolve(prj);
         })
-        .catch((error) => {});
-    })
-  );
-};
+        .catch((error) => {
+          console.log(error + " gettting committs")
+        });
+}
 
-const getLangs = async (projects) => {
-  return Promise.all(
-    projects.map((prj) => {
-      fetch(prj.api_url + "/languages")
+const grabPrjLangs = async (prj) => {
+  return fetch(prj.api_url + "/languages")
         .then((res) => (res.ok ? res : Promise.reject(res)))
         .then((res) => res.json())
         .then((res) => {
           prj.langs = Object.keys(res);
-          return prj;
+          return Promise.resolve(prj);
         })
         .catch((error) => {});
-    })
-  );
-};
-
-const getProjectCommits = (projects) => (dispatch) => {
-  projects.map((prj, index) => {
-    dispatch(requestProjectCommits(prj.name));
-    fetch(prj.api_url + "/stats/contributors")
-      .then((res) => (res.ok ? res : Promise.reject(res)))
-      .then((res) => res.json())
-      .then((res) => {
-        let commit_count = 0;
-        let contributor_count = 0;
-        res.map((contributor) => {
-          commit_count += contributor.total;
-          contributor_count += 1;
-        });
-        dispatch(
-          recieveProjectCommits(
-            prj.name,
-            commit_count,
-            contributor_count,
-            index
-          )
-        );
-      })
-      .catch((error) => {
-        dispatch(projectCommitsError(error));
-      });
-  });
-};
-
-const getProjectLangs = (projects) => (dispatch) => {
-  projects.map((prj, index) => {
-    dispatch(requestProjectLangs(prj.name));
-    fetch(prj.api_url + "/languages")
-      .then((res) => (res.ok ? res : Promise.reject(res)))
-      .then((res) => res.json())
-      .then((res) => {
-        dispatch(recieveProjectLangs(prj.name, Object.keys(res), index));
-      })
-      .catch((error) => {
-        dispatch(projectLangsError(error));
-      });
-  });
-};
+}
