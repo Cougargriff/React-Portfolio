@@ -36,7 +36,7 @@ const MultipleLangContainer = styled.div`
 `;
 
 const SingleLangContainer = styled.div`
-  display: contents;
+  display: block;
 `;
 const TitleContainer = styled.h3`
   height: 40px;
