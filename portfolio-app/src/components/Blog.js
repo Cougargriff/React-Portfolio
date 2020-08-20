@@ -1,37 +1,43 @@
-/*
-    src/components/Projects.js
-*/
-import resume from '../res/resume_curr-1.jpg';
 import React from 'react';
 import styled from 'styled-components';
 import ColorButton from './ColorButton';
+import Posts from './Posts'
 import {
   Title
 } from './TextBox'
 import { 
-  NColumnContent,
-  TopSection
+  NColumnContent
 } from './Containers'
 
+const BlogContainer = styled.div`
+  position: absolute;
+  width: 100%;
+`
 
+const BlogWelcome = "Welcome to my blog !"
 
-function Resume(props) {
+function BlogButtons() {
+  return (
+      <NColumnContent>
+            <ColorButton  
+            href="/"
+            color='#F18E33'
+            text='Back to Portfolio'
+          /> 
+      </NColumnContent>
+  )
+}
+
+function Blog(props) {
     return (
-      <div>
-        <NColumnContent>
-          <ColorButton  
-          href="/"
-          color='#F18E33'
-          text='Back to Portfolio'
-        /> 
-        </NColumnContent>
-        <TopSection>
+      <BlogContainer>
+        <BlogButtons/>
           <Title className="headers"> 
-            Welcome to me blog
+            {BlogWelcome}
           </Title>
-        </TopSection>
-      </div>
+          <Posts/>
+      </BlogContainer>
     )
 }
 
-export default Resume;
+export default Blog;
