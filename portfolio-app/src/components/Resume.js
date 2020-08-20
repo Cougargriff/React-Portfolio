@@ -1,6 +1,3 @@
-/*
-    src/components/Projects.js
-*/
 import resume from '../res/resume_curr-1.jpg';
 import React from 'react';
 import styled from 'styled-components';

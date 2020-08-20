@@ -2,6 +2,11 @@
   Main Workspace for App
 */
 import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 import Thumbnail from "./Thumbnail.js";
 import ScrollWrapper from "./ScrollWrapper";
 import github_logo from "../res/github_logo.svg";
@@ -10,49 +15,22 @@ import mailto_logo from "../res/mailTo.svg"
 import { motion } from "framer-motion";
 import styled from 'styled-components';
 import Home from "./Home";
-import cover from '../res/cover.jpg';
+import Blog from "./Blog";
+
 import ColorButton from "./ColorButton";
 import "./Styling/App.css";
+import {
+  TwoColumnContent,
+  ThreeColumnContent,
+  FourColumnContent,
+  TopSection
+} from "./Containers"
 
-const TwoColumnContent = styled.div`
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
 
-    @media (max-width: 750px) {
-        align-items: center;
-        flex-direction: column;
-    }
-`
 
-const ThreeColumnContent = styled.div`
-    display: flex;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding: 20px;
-
-    @media (max-width: 1105px) {
-        display: flex;
-        grid-template-columns: 1fr;
-    }
-
-`
-const TopSection = styled.section`
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background:linear-gradient(to bottom, rgba(255, 255, 255, 0.50), rgb(255, 255, 255) 100%), url(${cover});
-    background-size: cover;
-    background-position-y: 20%;
-
-    @media (max-width: 1105px) {
-      grid-template-columns: 1fr;
-  }
-`
-function navButtons() {
+function NavButtons() {
   return (
-    <ThreeColumnContent>
+    <FourColumnContent>
       <ColorButton  
       href="#projects"
       color='#F18E33'
@@ -68,15 +46,19 @@ function navButtons() {
       color='#000080'
       text='Resume'
       />
-    </ThreeColumnContent>
+      <ColorButton  
+      href="/blog"
+      color='#53DC98'
+      text='Blog'
+      />
+    </FourColumnContent>
   );
 }
 
-function navBar() {
+function NavBar() {
   return (
-
         <TwoColumnContent>
-          {navButtons()}
+          <NavButtons/>
             <ThreeColumnContent>
             <motion.div
               className="container"
@@ -121,16 +103,29 @@ function navBar() {
   )
 }
 
-function App() {
-
+function Main() {
   return (
-      <div className="App">
-        <TopSection id="top">
-          {navBar()}
-          <Home/>
-        </TopSection>
-        <ScrollWrapper />
-      </div>
+    <div className="App">
+      <TopSection id="top">
+        <NavBar/>
+        <Home/>
+      </TopSection>
+      <ScrollWrapper />
+    </div>
+  )
+}
+
+
+function App() {
+  return (
+    <Router>
+        <Route exact path="/">
+          <Main/>
+        </Route>
+        <Route path="/blog">
+          <Blog/>
+        </Route>
+    </Router>
   );
 }
 
