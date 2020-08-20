@@ -2,18 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import ColorButton from './ColorButton';
 import Posts from './Posts'
-import {
-  Title
-} from './TextBox'
-import { 
-  NColumnContent
-} from './Containers'
+import { Title } from './TextBox'
+import { NColumnContent } from './Containers'
 
 const BlogContainer = styled.div`
   position: absolute;
   width: 100%;
 `
-
 const BlogWelcome = "Welcome to my blog !"
 
 function BlogButtons() {
