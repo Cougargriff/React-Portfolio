@@ -27,7 +27,7 @@ const postsError = () => {
 };
 
 
-const POSTS_URL = "http://deno-blog-api.herokuapp.com/posts";
+const POSTS_URL = "deno-blog-api.herokuapp.com/posts";
 
 /* 
     Action creator function to call from component class
