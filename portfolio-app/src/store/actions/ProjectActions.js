@@ -1,13 +1,7 @@
 import {
   FETCH_PROJECTS_REQUEST,
   FETCH_PROJECTS_SUCCESS,
-  FETCH_PROJECTS_FAILURE,
-  LOAD_PROJECT_COMMITS_REQUEST,
-  LOAD_PROJECT_COMMITS_SUCCESS,
-  LOAD_PROJECT_COMMITS_FAILURE,
-  LOAD_PROJECT_LANGS_REQUEST,
-  LOAD_PROJECT_LANGS_SUCCESS,
-  LOAD_PROJECT_LANGS_FAILURE,
+  FETCH_PROJECTS_FAILURE
 } from "./Types";
 
 /*
@@ -32,57 +26,6 @@ const projectsError = () => {
   };
 };
 
-const projectCommitsError = (err) => {
-  return {
-    type: LOAD_PROJECT_COMMITS_FAILURE,
-    err,
-  };
-};
-
-const recieveProjectCommits = (
-  name,
-  commit_count,
-  contributor_count,
-  index
-) => {
-  return {
-    type: LOAD_PROJECT_COMMITS_SUCCESS,
-    name,
-    commit_count,
-    contributor_count,
-    index,
-  };
-};
-
-const requestProjectCommits = (name) => {
-  return {
-    type: LOAD_PROJECT_COMMITS_REQUEST,
-    name,
-  };
-};
-
-const projectLangsError = (err) => {
-  return {
-    type: LOAD_PROJECT_LANGS_FAILURE,
-    err,
-  };
-};
-
-const recieveProjectLangs = (name, langs, index) => {
-  return {
-    type: LOAD_PROJECT_LANGS_SUCCESS,
-    name,
-    langs,
-    index,
-  };
-};
-
-const requestProjectLangs = (name) => {
-  return {
-    type: LOAD_PROJECT_LANGS_REQUEST,
-    name,
-  };
-};
 
 const PROJECTS_URL = "https://api.github.com/users/cougargriff/starred";
 
@@ -92,8 +35,14 @@ const PROJECTS_URL = "https://api.github.com/users/cougargriff/starred";
 */
 export const fetchProjects = () => async (dispatch) => {
   dispatch(requestProjects());
-  let projects = await getMetaData(await getProjects([]));
-  dispatch(receiveProjects(projects));
+  try {
+    let projects = await getMetaData(await getProjects([]));
+    dispatch(receiveProjects(projects));
+  } catch (error) {
+    console.log("Caught error while fetching projects:\n",error)
+    dispatch(projectsError())
+  }
+  
 };
 
 const getMetaData = async (projects) => {
