@@ -170,13 +170,22 @@ class Projects extends Component {
   };
 
   cards = () => {
-    if (!this.props.fetchedProjects) {
+    
+    if(this.props.fetchProjectsError) {
+      return (
+        <div>
+          <h4 className="contents">Project Load Error</h4>
+      </div>
+      )
+    }
+    else if (!this.props.fetchedProjects) {
       return (
         <div>
           <h4 className="contents">Loading Repos...</h4>
         </div>
       );
-    } else {
+     }
+    else {
       return <div>{formatProjectElements(this.props.projects)}</div>;
     }
   };
@@ -194,6 +203,7 @@ class Projects extends Component {
 function mapStateToProps(state) {
   return {
     isFetchingProjects: state.ProjectReducer.isFetchingProjects,
+    fetchProjectsError: state.ProjectReducer.fetchProjectsError,
     fetchedProjects: state.ProjectReducer.fetchedProjects,
     projects: state.ProjectReducer.projects,
   };

@@ -3,10 +3,7 @@
 */
 import React from 'react';
 import styled from 'styled-components';
-
-const Title = styled.h1`
-    font-size: 70px;
-`
+import { Title } from './TextBox'
 
 const HomeContainer = styled.div`
     height: 100vh;
