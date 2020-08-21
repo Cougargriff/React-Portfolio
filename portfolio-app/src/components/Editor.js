@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components';
 import ColorButton from './ColorButton';
 import { Title } from './TextBox'
@@ -6,6 +7,8 @@ import { NColumnContent } from './Containers'
 import MarkdownIt from 'markdown-it'
 import MdEditor from 'react-markdown-editor-lite'
 import 'react-markdown-editor-lite/lib/index.css';
+import { setEditorText } from '../store/actions/EditorActions';
+import { createPost } from '../store/actions/PostActions';
 
 const mdParser = new MarkdownIt({html: true}/* Markdown-it options */);
 
@@ -31,19 +34,19 @@ const EditorTitle = "Markdown Editor"
 
 
 const EditButtons = () => {
+  const dispatch = useDispatch();
   return (
     <EditButtonContainer>
       <ColorButton
-        //onClick={postSubmit}
+        onClick={() => {
+          dispatch(createPost())
+        }}
+        href=""
         color='#779ECB'
         text='Submit'
       /> 
     </EditButtonContainer>
   )
-}
-
-const postSubmit = () => {
-  console.log("Submitting post -> ")
 }
 
 function BackButton() {
@@ -59,7 +62,10 @@ function BackButton() {
 }
 
 const EditorWindow = () => {
-  const [md, setMd] = useState("");
+  //const [md, setMd] = useState("");
+  const dispatch = useDispatch();
+  const md = useSelector(state => state.EditorReducer.text)
+  const updateError = useSelector(state => state.EditorReducer.updateTextError)
 
   return (
     <MdEditor
@@ -67,20 +73,13 @@ const EditorWindow = () => {
       style={EditorStyle}
       renderHTML={(text) => mdParser.render(text)}
       onChange={({html, text}) => {    
-        console.log('handleEditorChange', html, md)
-        setMd(text)
+        dispatch(setEditorText(text, html))
       }}
     />
   )
 }
 
 function Editor(props) {
-
-  
-
-  
-  
-
     return (
       <EditorContainer>
         <BackButton/>

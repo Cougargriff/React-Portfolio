@@ -4,14 +4,14 @@ import {
   FETCH_POSTS_FAILURE
 } from "../actions/Types";
 
-const initPoststState = {
+const initPostsState = {
   isFetchingPosts: false,
   fetchPostsError: false,
   fetchedPosts: false,
   posts: [],
 };
 
-const postsReducer = (state = initPoststState, action) => {
+const postsReducer = (state = initPostsState, action) => {
   switch (action.type) {
     /*
             On each parsed action request type, the reducer will return the
