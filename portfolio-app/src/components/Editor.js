@@ -41,7 +41,6 @@ const EditButtons = () => {
         onClick={() => {
           dispatch(createPost())
         }}
-        href=""
         color='#779ECB'
         text='Submit'
       /> 

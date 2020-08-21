@@ -1,6 +1,7 @@
 import {
   UPDATE_EDITOR_TEXT,
-  UPDATE_EDITOR_ERROR
+  UPDATE_EDITOR_ERROR,
+  CLEAR_TEXT
 } from "../actions/Types";
 
 const initEditorState = {
@@ -27,6 +28,12 @@ const editorReducer = (state = initEditorState, action) => {
       return {
         ...state,
         updateTextError: true
+      }
+    case CLEAR_TEXT:
+      return {
+        ...state,
+        text: "",
+        html: ""
       }
     default:
       return state;

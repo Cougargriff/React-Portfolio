@@ -6,7 +6,9 @@ import {
   CREATE_POST_SUCCESS,
   CREATE_POST_FAILURE
 } from "./Types";
+
 import axios from "axios";
+import { clearEditor } from "./EditorActions";
 /*
     Action types for reducers to ... reduce
 */
@@ -41,9 +43,10 @@ const createPostSuccess = () => {
   }
 }
 
-const createPostFailure = () => {
+const createPostFailure = (err) => {
   return {
-    type: CREATE_POST_FAILURE
+    type: CREATE_POST_FAILURE,
+    err
   }
 }
 
@@ -74,6 +77,9 @@ export const createPost = () => async (dispatch, getState) => {
   dispatch(createPostRequest())
   try {
     const html = getState().EditorReducer.html
+    if(!html) {
+      throw "Can't create empty post"
+    }
     const title = "Test Create with Editor"
     const response = await makePost({
       title: title,
@@ -81,8 +87,9 @@ export const createPost = () => async (dispatch, getState) => {
     })
     console.log(response);
     dispatch(createPostSuccess())
+    dispatch(clearEditor())
   } catch (err) {
-    dispatch(createPostFailure())
+    dispatch(createPostFailure(err))
   }
 }
 

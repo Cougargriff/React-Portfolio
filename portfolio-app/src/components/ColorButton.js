@@ -34,6 +34,7 @@ const Button = styled.a`
 
   &:hover {
     background: transparent;
+    cursor: pointer;
     color: ${props => props.color}; 
   }
 `
