@@ -10,7 +10,7 @@ function shadeHexColor(color, percent) {
 
 function ColorButton(props) {
     return (
-        <Button href={props.href} color={props.color}>
+        <Button href={props.href} color={props.color} onClick={props.onClick}>
                 {props.text}
         </Button>
     )
@@ -34,6 +34,7 @@ const Button = styled.a`
 
   &:hover {
     background: transparent;
+    cursor: pointer;
     color: ${props => props.color}; 
   }
 `

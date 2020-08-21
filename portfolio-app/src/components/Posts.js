@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components';
 import { fetchPosts } from '../store/actions/PostActions';
 import { Title } from './TextBox';
+import ReactMarkdown from 'react-markdown'
 
 const PostsContainer = styled.div`
   width: 100%;
   height: 2000px;
-  text-align: center;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,6 @@ const Post = styled.div`
 const PostContainer = styled.div`
   border-radius: 25px;
   padding: 50px;
-  width: 800px;
 `
 
 function Posts (props) {
@@ -49,7 +48,8 @@ function Posts (props) {
                 <Title>
                   {post.title}
                 </Title>
-                {post.content}
+                <div dangerouslySetInnerHTML={{__html: post.content}}/>
+                
               </Post>
             </PostContainer>)
         })}

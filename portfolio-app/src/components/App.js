@@ -16,7 +16,7 @@ import { motion } from "framer-motion";
 import styled from 'styled-components';
 import Home from "./Home";
 import Blog from "./Blog";
-
+import Editor from "./Editor"
 import ColorButton from "./ColorButton";
 import "./Styling/App.css";
 import {
@@ -124,6 +124,9 @@ function App() {
         </Route>
         <Route path="/blog">
           <Blog/>
+        </Route>
+        <Route path="/admin-editor">
+          <Editor/>
         </Route>
     </Router>
   );
