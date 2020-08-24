@@ -1,11 +1,14 @@
 import {
   UPDATE_EDITOR_TEXT,
   UPDATE_EDITOR_ERROR,
-  CLEAR_TEXT
+  CLEAR_TEXT,
+  ADMIN_SIGN_IN_SUCCESS,
+  ADMIN_SIGN_OUT_SUCCESS
 } from "../actions/Types";
 
 const initEditorState = {
   updateTextError: false,
+  isAdmin: false,
   text: "",
   html: ""
 };
@@ -34,6 +37,16 @@ const editorReducer = (state = initEditorState, action) => {
         ...state,
         text: "",
         html: ""
+      }
+    case ADMIN_SIGN_IN_SUCCESS:
+      return {
+        ...state,
+        isAdmin: true
+      }
+    case ADMIN_SIGN_OUT_SUCCESS:
+      return {
+        ...state,
+        isAdmin: false
       }
     default:
       return state;
