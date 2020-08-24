@@ -10,14 +10,20 @@ const BlogContainer = styled.div`
   position: absolute;
   width: 100%;
 `
+const TopBar = styled.div`
+  padding-top: 20px;
+  width: 100%;
+`
+
 const BlogWelcome = "Welcome to my blog !"
 
 function BlogButtons() {
   const isAdmin = useSelector((state) => state.EditorReducer.isAdmin);
 
   return (
+    <TopBar>
       <NColumnContent>
-            <ColorButton  
+          <ColorButton  
             href="/"
             color='#F18E33'
             text='Portfolio'
@@ -28,6 +34,7 @@ function BlogButtons() {
           href="/admin-editor"
         /> : undefined }
       </NColumnContent>
+    </TopBar>
   )
 }
 

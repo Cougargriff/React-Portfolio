@@ -8,10 +8,9 @@ import { NColumnContent } from './Containers';
 import ColorButton from "./ColorButton";
 
 const PostsContainer = styled.div`
-  height: 2000px;
   align-items: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
 `
 const Post = styled.div`
   display: flex;

@@ -1,6 +1,7 @@
 import {
   UPDATE_EDITOR_ERROR,
   UPDATE_EDITOR_TEXT,
+  UPDATE_EDITOR_TITLE,
   CLEAR_TEXT,
   ADMIN_SIGN_IN_REQUEST,
   ADMIN_SIGN_IN_SUCCESS,
@@ -19,6 +20,13 @@ const updateText = (text, html) => {
     type: UPDATE_EDITOR_TEXT,
     text,
     html
+  }
+}
+
+const updateTitle = (title) => {
+  return {
+    type: UPDATE_EDITOR_TITLE,
+    title
   }
 }
 
@@ -84,6 +92,10 @@ export const clearEditor = () => (dispatch) => {
 export const setEditorText = (text, html) => async (dispatch) => {
   dispatch(updateText(text, html));
 };
+
+export const setEditorTitle = (title) => async (dispatch) => {
+  dispatch(updateTitle(title));
+}
 
 export const adminSignIn = (email, psw) => async (dispatch) => {
   dispatch(adminSignInRequest())

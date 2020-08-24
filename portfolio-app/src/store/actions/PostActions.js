@@ -141,7 +141,10 @@ export const createPost = () => async (dispatch, getState) => {
     if(!html) {
       throw "Can't create empty post"
     }
-    const title = "Test Create with Editor"
+    const title = getState().EditorReducer.title
+    if(!title) {
+      throw "Post needs title"
+    }
     const response = await makePost({
       title: title,
       content: html
