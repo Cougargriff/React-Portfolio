@@ -7,7 +7,7 @@ import { NColumnContent } from './Containers'
 import MarkdownIt from 'markdown-it'
 import MdEditor from 'react-markdown-editor-lite'
 import 'react-markdown-editor-lite/lib/index.css';
-import { setEditorText } from '../store/actions/EditorActions';
+import { setEditorText, setEditorTitle } from '../store/actions/EditorActions';
 import { createPost } from '../store/actions/PostActions';
 
 const mdParser = new MarkdownIt({html: true}/* Markdown-it options */);
@@ -15,13 +15,26 @@ const mdParser = new MarkdownIt({html: true}/* Markdown-it options */);
 
 
 const EditorContainer = styled.div`
-  position: absolute;
-  width: 100%;
-  display: flex-box;
+  align-items: center; 
+  display: flex;
+  flex-direction: column;
 `
 
 const EditButtonContainer = styled.div`
   padding: 20px;
+  width: 100%;
+`
+
+const TitleInput = styled.input`
+  width: 400px;
+  text-align: center;
+  height: 60px;
+  margin-bottom: 60px;
+  font-size: 30px;
+`
+
+const TopBar = styled.div`
+  padding-top: 20px;
   width: 100%;
 `
 
@@ -31,7 +44,6 @@ const EditorStyle = {
 }
 
 const EditorTitle = "Markdown Editor"
-
 
 const EditButtons = () => {
   const dispatch = useDispatch();
@@ -48,8 +60,9 @@ const EditButtons = () => {
   )
 }
 
-function BackButton() {
+function NavButtons() {
   return (
+    <TopBar>
       <NColumnContent>
             <ColorButton  
             href="/"
@@ -67,6 +80,7 @@ function BackButton() {
           href="/admin"
         />  
       </NColumnContent>
+    </TopBar>
   )
 }
 
@@ -76,7 +90,6 @@ const EditorWindow = () => {
   const md = useSelector(state => state.EditorReducer.text)
   const updateError = useSelector(state => state.EditorReducer.updateTextError)
   
-
   return (
     <MdEditor
       value={md}
@@ -90,15 +103,23 @@ const EditorWindow = () => {
 }
 
 function Editor(props) {
-
   const isAdmin = useSelector((state) => state.EditorReducer.isAdmin);
-  
+  const title = useSelector(state => state.EditorReducer.title)
+  const dispatch = useDispatch();
+
     return isAdmin ? (
       <EditorContainer>
-        <BackButton/>
+        <NavButtons />
         <Title className="headers"> 
             {EditorTitle}
         </Title>
+        <TitleInput 
+          placeholder="Title"
+          value={title}
+          onChange={(text) => {
+            dispatch(setEditorTitle(text.target.value));
+          }}
+        />
         <EditorWindow/>
         <EditButtons/>
       </EditorContainer>

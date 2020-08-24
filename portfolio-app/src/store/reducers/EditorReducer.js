@@ -3,14 +3,16 @@ import {
   UPDATE_EDITOR_ERROR,
   CLEAR_TEXT,
   ADMIN_SIGN_IN_SUCCESS,
-  ADMIN_SIGN_OUT_SUCCESS
+  ADMIN_SIGN_OUT_SUCCESS,
+  UPDATE_EDITOR_TITLE
 } from "../actions/Types";
 
 const initEditorState = {
   updateTextError: false,
   isAdmin: false,
   text: "",
-  html: ""
+  html: "",
+  title: ""
 };
 
 const editorReducer = (state = initEditorState, action) => {
@@ -27,6 +29,11 @@ const editorReducer = (state = initEditorState, action) => {
         text: action.text,
         html: action.html
       }
+    case UPDATE_EDITOR_TITLE:
+      return {
+        ...state,
+        title: action.title
+      }
     case UPDATE_EDITOR_ERROR:
       return {
         ...state,
@@ -36,7 +43,8 @@ const editorReducer = (state = initEditorState, action) => {
       return {
         ...state,
         text: "",
-        html: ""
+        html: "",
+        title: ""
       }
     case ADMIN_SIGN_IN_SUCCESS:
       return {

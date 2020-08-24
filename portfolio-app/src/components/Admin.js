@@ -12,7 +12,53 @@ const EmailPasswordBoxContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const CenterItems = styled.div``;
+
+const TopBar = styled.div`
+  padding-top: 20px;
+  width: 100%;
+`;
+
+const StyledInput = styled.input`
+  text-align: center;
+  margin: 15px;
+  width: 350px;
+  height: 36px;
+  font-size: 20px;
+`;
+
+function NavButtons() {
+  const dispatch = useDispatch();
+  return (
+    <TopBar>
+      <TwoColumnContent>
+        <NColumnContent>
+          <ColorButton
+            color="#F18E33"
+            text="Portfolio"
+            href="/"
+          />
+          <ColorButton
+            color="#53DC98"
+            text="Blog"
+            href="/blog"
+          />
+          <ColorButton
+            color="#779ECB"
+            text="Editor"
+            href="/admin-editor"
+          />
+        </NColumnContent>
+        <ColorButton
+          color="#FF0000"
+          text="Sign Out"
+          onClick={() => {
+            dispatch(adminSignOut());
+          }}
+        />
+      </TwoColumnContent>
+    </TopBar>
+  );
+}
 
 const SignInBoxes = () => {
   const [email, setEmail] = useState("");
@@ -23,14 +69,15 @@ const SignInBoxes = () => {
   return (
     <center>
       <EmailPasswordBoxContainer>
-        <Input
+        <StyledInput
           placeholder="Email"
           onChange={(text) => {
             setEmail(text.target.value);
           }}
         />
-        <Input.Password
+        <StyledInput
           placeholder="Password"
+          type="password"
           onChange={(text) => {
             setPassword(text.target.value);
           }}
@@ -49,49 +96,22 @@ const SignInBoxes = () => {
 
 const Admin = (props) => {
   const isAdmin = useSelector((state) => state.EditorReducer.isAdmin);
-  const dispatch = useDispatch();
 
-  return isAdmin ? (
-    <div>
-      <TwoColumnContent>
-      
-      <NColumnContent>
-      <ColorButton
-          color='#F18E33'
-          text="Portfolio"
-          href="/"
-        />
-        <ColorButton
-          color='#53DC98'
-          text="Blog"
-          href="/blog"
-        />
-        <ColorButton
-          color='#779ECB'
-          text="Editor"
-          href="/admin-editor"
-        />
-      </NColumnContent>
-      <ColorButton
-          color='#FF0000'
-          text="Sign Out"
-          onClick={() => {
-            dispatch(adminSignOut());
-          }}
-        />
-      </TwoColumnContent>
-      
-      <center>
-        <Title className="headers">You are an admin</Title>
-      </center>
-      
-    </div>
-  ) : (
-    <CenterItems>
-      <Title className="headers">You are not an admin</Title>
-      <SignInBoxes />
-    </CenterItems>
-  );
+  return isAdmin
+    ? (
+      <div>
+        <NavButtons />
+        <center>
+          <Title className="headers">You are an admin</Title>
+        </center>
+      </div>
+    )
+    : (
+      <div>
+        <Title className="headers">You are not an admin</Title>
+        <SignInBoxes />
+      </div>
+    );
 };
 
 export default Admin;
