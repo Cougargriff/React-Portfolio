@@ -10,7 +10,7 @@ function shadeHexColor(color, percent) {
 
 function ColorButton(props) {
     return (
-        <Button href={props.href} color={props.color} onClick={props.onClick}>
+        <Button margins={props.margins} href={props.href} color={props.color} onClick={props.onClick}>
                 {props.text}
         </Button>
     )
@@ -22,7 +22,7 @@ const Button = styled.a`
   border-radius: 3px;
   padding: 0.5rem 0.5rem;
   width: 70px;
-  margin: 0.5rem 1rem;
+  margin: ${props => props.margins ? props.margins : "0.5rem 1rem"};
   background: transparent;
   background-color: #A3D9FF;
   color: white;

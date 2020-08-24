@@ -4,7 +4,13 @@ import {
   FETCH_POSTS_FAILURE,
   CREATE_POST_REQUEST,
   CREATE_POST_SUCCESS,
-  CREATE_POST_FAILURE
+  CREATE_POST_FAILURE,
+  DELETE_POST_REQUEST,
+  DELETE_POST_SUCCESS,
+  DELETE_POST_FAILURE,
+  UPDATE_POST_REQUEST,
+  UPDATE_POST_SUCCESS,
+  UPDATE_POST_FAILURE
 } from "./Types";
 
 import axios from "axios";
@@ -50,6 +56,43 @@ const createPostFailure = (err) => {
   }
 }
 
+const deletePostRequest = () => {
+  return {
+    type: DELETE_POST_REQUEST
+  }
+}
+
+const deletePostSuccess = () => {
+  return {
+    type: DELETE_POST_SUCCESS
+  }
+}
+
+const deletePostFailure = (err) => {
+  return {
+    type: DELETE_POST_FAILURE,
+    err
+  }
+}
+
+const updatePostRequest = () => {
+  return {
+    type: UPDATE_POST_REQUEST
+  }
+}
+
+const updatePostSuccess = () => {
+  return {
+    type: UPDATE_POST_SUCCESS
+  }
+}
+
+const updatePostFailure = (err) => {
+  return {
+    type: UPDATE_POST_FAILURE,
+    err
+  }
+}
 
 const POSTS_URL = "https://deno-blog-api.herokuapp.com/posts";
 
@@ -71,6 +114,24 @@ const makePost = async (post) => {
     params,
     { headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
   )
+}
+
+const removePost = async (id) => {
+  return axios.delete(POSTS_URL + `/${id}`)
+}
+
+export const deletePost = (id) => async (dispatch) => {
+  dispatch(deletePostRequest())
+  try {
+    const res = await removePost(id)
+    dispatch(fetchPosts())
+  } catch (err) {
+    dispatch(deletePostFailure(err))
+  }
+}
+
+export const updatePost = (post) => async (dispatch) => {
+
 }
 
 export const createPost = () => async (dispatch, getState) => {
