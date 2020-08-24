@@ -2,6 +2,8 @@
   Main Workspace for App
 */
 import React from "react";
+import { useSelector } from 'react-redux'
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,10 +27,13 @@ import {
   FourColumnContent,
   TopSection
 } from "./Containers"
+import Admin from "./Admin.js";
 
 
 
 function NavButtons() {
+  const isAdmin = useSelector((state) => state.EditorReducer.isAdmin);
+
   return (
     <FourColumnContent>
       <ColorButton  
@@ -51,6 +56,11 @@ function NavButtons() {
       color='#53DC98'
       text='Blog'
       />
+      { isAdmin ? <ColorButton
+          color='#779ECB'
+          text="Admin"
+          href="/admin"
+        /> : undefined }
     </FourColumnContent>
   );
 }
@@ -127,6 +137,9 @@ function App() {
         </Route>
         <Route path="/admin-editor">
           <Editor/>
+        </Route>
+        <Route path="/admin">
+          <Admin/>
         </Route>
     </Router>
   );

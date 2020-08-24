@@ -17,7 +17,7 @@ function ColorButton(props) {
 }
 
 const Button = styled.a`
-  /* This renders the buttons above... Edit me! */
+  text-align: center;
   display: inline;
   border-radius: 3px;
   padding: 0.5rem 0.5rem;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux'
 import styled from 'styled-components';
 import ColorButton from './ColorButton';
 import Posts from './Posts'
@@ -12,13 +13,20 @@ const BlogContainer = styled.div`
 const BlogWelcome = "Welcome to my blog !"
 
 function BlogButtons() {
+  const isAdmin = useSelector((state) => state.EditorReducer.isAdmin);
+
   return (
       <NColumnContent>
             <ColorButton  
             href="/"
             color='#F18E33'
-            text='Back to Portfolio'
+            text='Portfolio'
           /> 
+          { isAdmin ? <ColorButton
+          color='#779ECB'
+          text="Editor"
+          href="/admin-editor"
+        /> : undefined }
       </NColumnContent>
   )
 }

@@ -7,7 +7,7 @@ export const TwoColumnContent = styled.div`
   width: 100%;
   justify-content: space-between;
 
-  @media (max-width: 750px) {
+  @media (max-width: 850px) {
     align-items: center;
     flex-direction: column-reverse;
   }
@@ -35,7 +35,7 @@ export const FourColumnContent = styled.div`
   display: flex;
   padding: 20px;
 
-  @media (max-width: 750px) {
+  @media (max-width: 850px) {
     display: flex;
     flex-direction: column;
     grid-template-columns: 1fr;
@@ -49,7 +49,7 @@ export const NColumnContent = styled.div`
   display: flex-box;
   padding: 20px;
 
-  @media (max-width: ${(props) => (props.size ? props.size : "750px")}) {
+  @media (max-width: ${(props) => (props.size ? props.size : "850px")}) {
     display: flex;
     flex-direction: column;
     grid-template-columns: 1fr;

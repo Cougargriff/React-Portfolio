@@ -61,7 +61,7 @@ const ScrollWrapper = () => {
         <TwoColumnContent>
           <ColorButton href='#top'
           color='#ff6347'
-          text='Back to Top'/>
+          text='Top'/>
           {contactInfo()}
           {tagLine()}
         </TwoColumnContent>

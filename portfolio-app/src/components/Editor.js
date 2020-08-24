@@ -54,8 +54,18 @@ function BackButton() {
             <ColorButton  
             href="/"
             color='#F18E33'
-            text='Back to Portfolio'
-          /> 
+            text='Portfolio'
+          />
+          <ColorButton
+          color='#53DC98'
+          text="Blog"
+          href="/blog"
+        />
+        <ColorButton
+          color='#FF0000'
+          text="Admin"
+          href="/admin"
+        />  
       </NColumnContent>
   )
 }
@@ -65,6 +75,7 @@ const EditorWindow = () => {
   const dispatch = useDispatch();
   const md = useSelector(state => state.EditorReducer.text)
   const updateError = useSelector(state => state.EditorReducer.updateTextError)
+  
 
   return (
     <MdEditor
@@ -79,7 +90,10 @@ const EditorWindow = () => {
 }
 
 function Editor(props) {
-    return (
+
+  const isAdmin = useSelector((state) => state.EditorReducer.isAdmin);
+  
+    return isAdmin ? (
       <EditorContainer>
         <BackButton/>
         <Title className="headers"> 
@@ -87,6 +101,12 @@ function Editor(props) {
         </Title>
         <EditorWindow/>
         <EditButtons/>
+      </EditorContainer>
+    ) : (
+      <EditorContainer>
+        <Title className="headers"> 
+            You are not an Admin
+        </Title>
       </EditorContainer>
     )
 }
