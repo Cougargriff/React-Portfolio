@@ -26,6 +26,26 @@ const StyledInput = styled.input`
   font-size: 20px;
 `;
 
+function PortfolioBack () {
+  const dispatch = useDispatch();
+  return (
+    <TopBar>
+        <NColumnContent>
+          <ColorButton
+            color="#F18E33"
+            text="Portfolio"
+            href="/"
+          />
+          <ColorButton
+            color="#53DC98"
+            text="Blog"
+            href="/blog"
+          />
+        </NColumnContent>
+    </TopBar>
+  );
+}
+
 function NavButtons() {
   const dispatch = useDispatch();
   return (
@@ -108,6 +128,7 @@ const Admin = (props) => {
     )
     : (
       <div>
+        <PortfolioBack />
         <Title className="headers">You are not an admin</Title>
         <SignInBoxes />
       </div>
