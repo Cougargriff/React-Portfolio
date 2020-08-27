@@ -6,7 +6,9 @@ import { Title } from "./TextBox";
 import MarkdownIt from "markdown-it";
 import { NColumnContent } from "./Containers";
 import ColorButton from "./ColorButton";
-import GithubStyle from "github-markdown-css";
+
+/* Must import for github md styling */
+import GithubStyle from "github-markdown-css"; 
 
 const PostsContainer = styled.div`
   align-items: center;
@@ -83,7 +85,7 @@ const PostButtons = (post, dispatch) => {
         text="Update"
         onClick={() => {
           if (
-            window.confirm(`Do you really want to delete ${post.title} ?`) ===
+            window.confirm(`Do you really want to delete ${post.title}?`) ===
             true
           ) {
             dispatch(deletePost(post.id));

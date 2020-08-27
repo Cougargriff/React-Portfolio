@@ -52,6 +52,7 @@ export const NColumnContent = styled.div`
   ${(props) => props.padding ? `padding-bottom: ${props.paddingBottom};` : ""}
 
   @media (max-width: ${(props) => (props.size ? props.size : "850px")}) {
+    padding-top: 15px;
     display: flex-box;
     flex-direction: column;
     grid-template-columns: 1fr;
