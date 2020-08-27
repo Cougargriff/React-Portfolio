@@ -42,7 +42,11 @@ const PostContainer = styled.div`
   width: 980px;
 
   @media (max-width: 1000px) {
-    width: 380px;
+    width: 680px;
+  }
+
+  @media (max-width: 700px) {
+    width: 350px;
   }
 `;
 
@@ -66,7 +70,7 @@ const formatDate = (time_stamp) => {
 
 const PostButtons = (post, dispatch) => {
   return (
-    <NColumnContent padding="0px" paddingBottom="10px" size="1000px">
+    <NColumnContent padding="0px" paddingBottom="15px" size="1000px">
       <ColorButton
         margins="0px"
         color="#FF0000"
@@ -119,7 +123,7 @@ const Posts = (props) => {
           <PostContainer key={i}>
             <Post>
               {isAdmin ? PostButtons(post, dispatch) : undefined}
-              <Title size="50px" margins="margin: 0px;">
+              <Title size="50px" margins="margin: 0px;" changeFontAt="700px" changeFontTo="30px">
                 {post.title}
               </Title>
               <CreatedAt>Created on: {formatDate(post.time_stamp)}</CreatedAt>
