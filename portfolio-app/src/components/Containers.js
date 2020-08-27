@@ -47,10 +47,12 @@ export const ThreeColumnContent = styled.div`
 `;
 export const NColumnContent = styled.div`
   display: flex-box;
-  padding: 20px;
+  padding: ${(props) => props.padding ? props.padding : "20px"};
+  ${(props) => props.padding ? `padding-left: ${props.paddingLeft};` : ""}
+  ${(props) => props.padding ? `padding-bottom: ${props.paddingBottom};` : ""}
 
   @media (max-width: ${(props) => (props.size ? props.size : "850px")}) {
-    display: flex;
+    display: flex-box;
     flex-direction: column;
     grid-template-columns: 1fr;
   }

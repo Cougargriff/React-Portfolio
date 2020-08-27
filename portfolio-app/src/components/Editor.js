@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components';
 import ColorButton from './ColorButton';
@@ -10,9 +10,7 @@ import 'react-markdown-editor-lite/lib/index.css';
 import { setEditorText, setEditorTitle } from '../store/actions/EditorActions';
 import { createPost } from '../store/actions/PostActions';
 
-const mdParser = new MarkdownIt({html: true}/* Markdown-it options */);
-
-
+const mdParser = new MarkdownIt({html: true} /* Markdown-it options */);
 
 const EditorContainer = styled.div`
   align-items: center; 

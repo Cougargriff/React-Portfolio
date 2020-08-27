@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Title } from "./TextBox";
-import { Input } from "antd";
 import styled from "styled-components";
 import ColorButton from "./ColorButton";
 import { adminSignIn, adminSignOut } from "../store/actions/EditorActions";
@@ -27,7 +26,6 @@ const StyledInput = styled.input`
 `;
 
 function PortfolioBack () {
-  const dispatch = useDispatch();
   return (
     <TopBar>
         <NColumnContent>
@@ -83,7 +81,6 @@ function NavButtons() {
 const SignInBoxes = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  let psw = "";
   const dispatch = useDispatch();
 
   return (

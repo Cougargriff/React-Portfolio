@@ -78,14 +78,6 @@ function languageDot(lang) {
   return <Dot color={colors[lang].color} />;
 }
 
-function getLangs(langs) {
-  var res = [];
-  langs.map((lang) => {
-    res.push(lang.name);
-  });
-  return res;
-}
-
 function languages(langs) {
   if (langs.length > 1) {
     return (

@@ -108,8 +108,8 @@ const getPosts = async () => {
 
 const makePost = async (post) => {
   var params = new URLSearchParams();
-                params.append('title', post.title);
-                params.append('content', post.content);
+  params.append('title', post.title);
+  params.append('content', post.content);
   return axios.post(POSTS_URL,
     params,
     { headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
@@ -118,6 +118,16 @@ const makePost = async (post) => {
 
 const removePost = async (id) => {
   return axios.delete(POSTS_URL + `/${id}`)
+}
+
+const editPost = async (post) => {
+  var params = new URLSearchParams();
+  params.append('title', post.title);
+  params.append('content', post.content);
+  return axios.post(POSTS_URL + `/${post.id}`,
+    params,
+    { headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
+  )
 }
 
 export const deletePost = (id) => async (dispatch) => {
@@ -130,14 +140,30 @@ export const deletePost = (id) => async (dispatch) => {
   }
 }
 
-export const updatePost = (post) => async (dispatch) => {
+export const updatePost = () => async (dispatch, getState) => {
+  dispatch(updatePostRequest())
+  try {
+    const html = getState().EditorReducer.html
+    if(!html) {
+      throw "Can't create empty post"
+    }
+    const title = getState().EditorReducer.title
+    if(!title) {
+      throw "Post needs title"
+    }
+    const res  = await editPost({
+      title: title,
+      content: html
+    })
+  } catch (err) {
 
+  }
 }
 
 export const createPost = () => async (dispatch, getState) => {
   dispatch(createPostRequest())
   try {
-    const html = getState().EditorReducer.html
+    const html = getState().EditorReducer.text
     if(!html) {
       throw "Can't create empty post"
     }
