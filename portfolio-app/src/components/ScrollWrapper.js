@@ -31,7 +31,7 @@ const ScrollWrapper = () => {
   function tagLine() {
     return (
       <FooterContainer>
-          Site v1.0 created by Griffin Johnson
+          Site v2.0 created by Griffin Johnson
       </FooterContainer>
     )
   }
