@@ -94,6 +94,15 @@ const updatePostFailure = (err) => {
   }
 }
 
+<<<<<<< Updated upstream
+=======
+const clearEditId = () => {
+  return {
+    type: CLEAR_EDIT_ID
+  }
+}
+
+>>>>>>> Stashed changes
 const POSTS_URL = "https://deno-blog-api.herokuapp.com/posts";
 
 /* 
