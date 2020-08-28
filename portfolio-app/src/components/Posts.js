@@ -86,15 +86,8 @@ const PostButtons = (post, dispatch) => {
       />
       <ColorButton
         color="#779ECB"
-        text="Update"
-        onClick={() => {
-          if (
-            window.confirm(`Do you really want to delete ${post.title}?`) ===
-            true
-          ) {
-            dispatch(deletePost(post.id));
-          }
-        }}
+        text="Edit"
+        href={`/admin-editor/${post.id}`}
       />
     </NColumnContent>
   );

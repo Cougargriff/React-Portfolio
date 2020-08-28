@@ -133,9 +133,8 @@ function App() {
         <Route path="/blog">
           <Blog/>
         </Route>
-        <Route path="/admin-editor">
-          <Editor/>
-        </Route>
+        {/* optional id param for updating existing posts */}
+        <Route path="/admin-editor/:id?" component={Editor} />
         <Route path="/admin">
           <Admin/>
         </Route>

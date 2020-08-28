@@ -11,15 +11,15 @@ import {
   ADMIN_SIGN_OUT_FAILURE
 } from "./Types";
 import { Auth } from "../../Firebase.js";
+import { clearEditing } from "./PostActions";
 
 /*
     Action types for reducers to ... reduce
 */
-const updateText = (text, html) => {
+const updateText = (text) => {
   return {
     type: UPDATE_EDITOR_TEXT,
-    text,
-    html
+    text
   }
 }
 
@@ -87,10 +87,11 @@ const adminSignOutFailure = (err) => {
 */
 export const clearEditor = () => (dispatch) => {
   dispatch(clearText())
+  dispatch(clearEditing())
 }
 
-export const setEditorText = (text, html) => async (dispatch) => {
-  dispatch(updateText(text, html));
+export const setEditorText = (text) => async (dispatch) => {
+  dispatch(updateText(text));
 };
 
 export const setEditorTitle = (title) => async (dispatch) => {
