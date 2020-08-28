@@ -78,7 +78,12 @@ const EditButtons = (props) => {
   )
 }
 
+const cleanup = (dispatch) => () => {
+  dispatch(clearEditor())
+}
+
 function NavButtons() {
+  const dispatch = useDispatch();
   return (
     <TopBar>
       <NColumnContent>
@@ -86,16 +91,19 @@ function NavButtons() {
             href="/"
             color='#F18E33'
             text='Portfolio'
+            onClick={cleanup(dispatch)}
           />
           <ColorButton
           color='#53DC98'
           text="Blog"
           href="/blog"
+          onClick={cleanup(dispatch)}
         />
         <ColorButton
           color='#FF0000'
           text="Admin"
           href="/admin"
+          onClick={cleanup(dispatch)}
         />  
       </NColumnContent>
     </TopBar>

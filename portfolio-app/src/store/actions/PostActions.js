@@ -221,7 +221,6 @@ export const createPost = () => async (dispatch, getState) => {
       title: title,
       content: text
     })
-    console.log(response);
     dispatch(createPostSuccess())
     dispatch(clearEditor())
   } catch (err) {
