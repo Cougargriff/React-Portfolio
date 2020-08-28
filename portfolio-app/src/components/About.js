@@ -52,6 +52,7 @@ const AboutDescription = styled.div`
 
   @media (max-width: 1400px) {
     margin-right: 0px;
+    width: 350px;
   }
 `;
 
