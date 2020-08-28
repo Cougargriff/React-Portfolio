@@ -2,6 +2,9 @@ import {
   FETCH_POSTS_REQUEST,
   FETCH_POSTS_SUCCESS,
   FETCH_POSTS_FAILURE,
+  FETCH_POST_REQUEST,
+  FETCH_POST_SUCCESS,
+  FETCH_POST_FAILURE,
   CREATE_POST_REQUEST,
   CREATE_POST_SUCCESS,
   CREATE_POST_FAILURE,
@@ -10,11 +13,12 @@ import {
   DELETE_POST_FAILURE,
   UPDATE_POST_REQUEST,
   UPDATE_POST_SUCCESS,
-  UPDATE_POST_FAILURE
+  UPDATE_POST_FAILURE,
+  CLEAR_EDIT_ID
 } from "./Types";
 
 import axios from "axios";
-import { clearEditor } from "./EditorActions";
+import { clearEditor, setEditorText, setEditorTitle } from "./EditorActions";
 /*
     Action types for reducers to ... reduce
 */
@@ -33,7 +37,26 @@ const receivePosts = (posts) => {
 
 const postsError = () => {
   return {
-    type: FETCH_POSTS_FAILURE,
+    type: FETCH_POST_FAILURE,
+  };
+};
+
+const requestPost = () => {
+  return {
+    type: FETCH_POST_REQUEST,
+  };
+};
+
+const receivePost = (id) => {
+  return {
+    type: FETCH_POST_SUCCESS,
+    id,
+  };
+};
+
+const postError = () => {
+  return {
+    type: FETCH_POST_FAILURE,
   };
 };
 
@@ -94,7 +117,14 @@ const updatePostFailure = (err) => {
   }
 }
 
-const POSTS_URL = "https://deno-blog-api.herokuapp.com/posts";
+const clearEditId = () => {
+  return {
+    type: CLEAR_EDIT_ID
+  }
+}
+
+const POSTS_URL = "http://deno-blog-api.herokuapp.com/posts";
+
 
 /* 
     Action creator function to call from component class
@@ -106,10 +136,15 @@ const getPosts = async () => {
   .then(res => res.json())
 }
 
+const getPost = async (id) => {
+  return await fetch(POSTS_URL + `/${id}`)
+  .then(res => res.json())
+}
+
 const makePost = async (post) => {
   var params = new URLSearchParams();
-                params.append('title', post.title);
-                params.append('content', post.content);
+  params.append('title', post.title);
+  params.append('content', post.content);
   return axios.post(POSTS_URL,
     params,
     { headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
@@ -120,25 +155,63 @@ const removePost = async (id) => {
   return axios.delete(POSTS_URL + `/${id}`)
 }
 
+const editPost = async (post) => {
+  var params = new URLSearchParams();
+  params.append('title', post.title);
+  params.append('content', post.content);
+  return axios.put(POSTS_URL + `/${post.id}`,
+    params,
+    { headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
+  )
+}
+export const clearEditing = (id) => async (dispatch) => { 
+  dispatch(clearEditId())
+}
+
 export const deletePost = (id) => async (dispatch) => {
   dispatch(deletePostRequest())
   try {
     const res = await removePost(id)
+    dispatch(deletePostSuccess())
     dispatch(fetchPosts())
   } catch (err) {
     dispatch(deletePostFailure(err))
   }
 }
 
-export const updatePost = (post) => async (dispatch) => {
+export const updatePost = () => async (dispatch, getState) => {
+  dispatch(updatePostRequest())
+  try {
+    const text = getState().EditorReducer.text
+    if(!text) {
+      throw "Can't create empty post"
+    }
+    const title = getState().EditorReducer.title
+    if(!title) {
+      throw "Post needs title"
+    }
 
+    const id = getState().PostsReducer.editingId
+    if(!id) {
+      throw "No post selected to edit"
+    }
+
+    const res  = await editPost({
+      id: id,
+      title: title,
+      content: text
+    })
+    dispatch(updatePostSuccess())
+  } catch (err) {
+    dispatch(updatePostFailure(err))
+  }
 }
 
 export const createPost = () => async (dispatch, getState) => {
   dispatch(createPostRequest())
   try {
-    const html = getState().EditorReducer.html
-    if(!html) {
+    const text = getState().EditorReducer.text
+    if(!text) {
       throw "Can't create empty post"
     }
     const title = getState().EditorReducer.title
@@ -147,13 +220,25 @@ export const createPost = () => async (dispatch, getState) => {
     }
     const response = await makePost({
       title: title,
-      content: html
+      content: text
     })
-    console.log(response);
     dispatch(createPostSuccess())
     dispatch(clearEditor())
   } catch (err) {
     dispatch(createPostFailure(err))
+  }
+}
+
+export const fetchPost = (id) => async (dispatch) => {
+  dispatch(requestPost());
+  try {
+    let post = await getPost(id);
+    dispatch(receivePost(post.id));
+    dispatch(setEditorText(post.content))
+    dispatch(setEditorTitle(post.title))
+  } catch (error) {
+    console.log("Caught error while fetching posts:\n",error)
+    dispatch(postsError())
   }
 }
 

@@ -11,7 +11,6 @@ const initEditorState = {
   updateTextError: false,
   isAdmin: false,
   text: "",
-  html: "",
   title: ""
 };
 
@@ -26,8 +25,7 @@ const editorReducer = (state = initEditorState, action) => {
     case UPDATE_EDITOR_TEXT:
       return {
         ...state,
-        text: action.text,
-        html: action.html
+        text: action.text
       }
     case UPDATE_EDITOR_TITLE:
       return {
@@ -43,7 +41,6 @@ const editorReducer = (state = initEditorState, action) => {
       return {
         ...state,
         text: "",
-        html: "",
         title: ""
       }
     case ADMIN_SIGN_IN_SUCCESS:

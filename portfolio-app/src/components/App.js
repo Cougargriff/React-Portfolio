@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux'
 
 import {
   BrowserRouter as Router,
-  Switch,
   Route
 } from "react-router-dom";
 import Thumbnail from "./Thumbnail.js";
@@ -15,7 +14,6 @@ import github_logo from "../res/github_logo.svg";
 import linked_logo from "../res/linkedin_logo.svg";
 import mailto_logo from "../res/mailTo.svg"
 import { motion } from "framer-motion";
-import styled from 'styled-components';
 import Home from "./Home";
 import Blog from "./Blog";
 import Editor from "./Editor"
@@ -135,9 +133,8 @@ function App() {
         <Route path="/blog">
           <Blog/>
         </Route>
-        <Route path="/admin-editor">
-          <Editor/>
-        </Route>
+        {/* optional id param for updating existing posts */}
+        <Route path="/admin-editor/:id?" component={Editor} />
         <Route path="/admin">
           <Admin/>
         </Route>
