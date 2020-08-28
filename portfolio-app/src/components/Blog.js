@@ -42,7 +42,7 @@ function Blog(props) {
     return (
       <BlogContainer>
         <BlogButtons/>
-          <Title className="headers"> 
+          <Title className="headers" changeFontAt="700px" changeFontTo="40px"> 
             {BlogWelcome}
           </Title>
           <Posts/>
