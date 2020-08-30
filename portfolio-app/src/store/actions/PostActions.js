@@ -14,7 +14,8 @@ import {
   UPDATE_POST_REQUEST,
   UPDATE_POST_SUCCESS,
   UPDATE_POST_FAILURE,
-  CLEAR_EDIT_ID
+  CLEAR_EDIT_ID,
+  CLEAR_SELECTED_POST
 } from "./Types";
 
 import axios from "axios";
@@ -47,10 +48,11 @@ const requestPost = () => {
   };
 };
 
-const receivePost = (id) => {
+const receivePost = (id, post) => {
   return {
     type: FETCH_POST_SUCCESS,
     id,
+    post
   };
 };
 
@@ -233,13 +235,23 @@ export const fetchPost = (id) => async (dispatch) => {
   dispatch(requestPost());
   try {
     let post = await getPost(id);
-    dispatch(receivePost(post.id));
+    dispatch(receivePost(post.id, post));
     dispatch(setEditorText(post.content))
     dispatch(setEditorTitle(post.title))
   } catch (error) {
     console.log("Caught error while fetching posts:\n",error)
     dispatch(postsError())
   }
+}
+
+const clearSelection = () => {
+  return {
+    type: CLEAR_SELECTED_POST
+  }
+}
+
+export const clearSelectedPost = () => async (dispatch) => {
+  dispatch(clearSelection())
 }
 
 export const fetchPosts = () => async (dispatch) => {

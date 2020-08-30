@@ -6,7 +6,8 @@ import {
   FETCH_POST_SUCCESS,
   FETCH_POST_FAILURE,
   UPDATE_POST_SUCCESS,
-  CLEAR_EDIT_ID
+  CLEAR_EDIT_ID,
+  CLEAR_SELECTED_POST,
 } from "../actions/Types";
 
 const initPostsState = {
@@ -15,9 +16,10 @@ const initPostsState = {
   fetchedPosts: false,
   posts: [],
   editingId: "",
+  selectedPost: {},
   fetchPostError: false,
   isFetchingPost: false,
-  fetchedPost: false
+  fetchedPost: false,
 };
 
 const postsReducer = (state = initPostsState, action) => {
@@ -31,12 +33,12 @@ const postsReducer = (state = initPostsState, action) => {
     case CLEAR_EDIT_ID:
       return {
         ...state,
-        editingId: ""
-      }
+        editingId: "",
+      };
     case UPDATE_POST_SUCCESS:
       return {
         ...state,
-      }
+      };
     case FETCH_POSTS_FAILURE:
       return {
         ...state,
@@ -57,25 +59,33 @@ const postsReducer = (state = initPostsState, action) => {
         fetchPostsError: false,
       };
       /* For updating single post */
-      case FETCH_POST_FAILURE:
-        return {
-          ...state,
-          isFetchingPost: false,
-          fetchPostError: true,
-        };
-      case FETCH_POST_SUCCESS:
-        return {
-          ...state,
-          isFetchingPosts: false,
-          fetchedPosts: true,
-          editingId: action.id,
-        };
-      case FETCH_POST_REQUEST:
-        return {
-          ...state,
-          isFetchingPosts: true,
-          fetchPostError: false,
-        };
+    case FETCH_POST_FAILURE:
+      return {
+        ...state,
+        isFetchingPost: false,
+        fetchPostError: true,
+      };
+    case FETCH_POST_SUCCESS:
+      console.log(action.post);
+      return {
+        ...state,
+        isFetchingPost: false,
+        fetchedPost: true,
+        editingId: action.id,
+        selectedPost: action.post,
+      };
+    case FETCH_POST_REQUEST:
+      return {
+        ...state,
+        isFetchingPosts: true,
+        fetchPostError: false,
+      };
+    case CLEAR_SELECTED_POST:
+      return {
+        ...state,
+        selectedPost: {},
+        fetchedPost: false,
+      };
     default:
       return state;
   }
