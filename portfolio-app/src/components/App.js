@@ -130,10 +130,8 @@ function App() {
         <Route exact path="/">
           <Main/>
         </Route>
-        <Route path="/blog">
-          <Blog/>
-        </Route>
         {/* optional id param for updating existing posts */}
+        <Route path="/blog/:id?" component={Blog} />
         <Route path="/admin-editor/:id?" component={Editor} />
         <Route path="/admin">
           <Admin/>

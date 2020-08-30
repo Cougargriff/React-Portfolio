@@ -1,35 +1,22 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import { fetchPosts, deletePost, clearSelectedPost } from "../store/actions/PostActions";
+import { fetchPost, deletePost } from "../store/actions/PostActions";
 import { Title } from "./TextBox";
 import MarkdownIt from "markdown-it";
 import { NColumnContent } from "./Containers";
 import ColorButton from "./ColorButton";
-import {
-  Link
-} from "react-router-dom";
 
 /* Must import for github md styling */
 import GithubStyle from "github-markdown-css"; 
 
-const StyledTitle = styled(Title)`
-  color: black; 
-  transition-duration: 0.4s;
-  &:hover {
-    background: transparent;
-    cursor: pointer;
-    color: #6A6C6E;
-  }
-`
-
-const PostsContainer = styled.div`
+const PostWrapper = styled.div`
   align-items: center;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
 `;
 
-const Post = styled.div`
+const PostContent = styled.div`
   display: flex;
   flex-direction: column;
   color: black;
@@ -107,47 +94,39 @@ const PostButtons = (post, dispatch) => {
   );
 };
 
-const Posts = (props) => {
+const Post = (props) => {
   const dispatch = useDispatch();
-  const postsError = useSelector((state) => state.PostsReducer.fetchPostsError);
-  const postsFetched = useSelector((state) => state.PostsReducer.fetchedPosts);
-  const posts = useSelector((state) => state.PostsReducer.posts);
   const isAdmin = useSelector((state) => state.EditorReducer.isAdmin);
+  const post = useSelector((state) => state.PostsReducer.selectedPost)
+  const fetchedPost = useSelector( state => state.PostsReducer.fetchedPost)
+  const fetchPostError = useSelector( state => state.PostsReducer.fetchPostError)
 
   useEffect(() => {
     // Run! Like go get some data from an API.
-    dispatch(fetchPosts());
-    dispatch(clearSelectedPost())
+    dispatch(fetchPost(props.id));
   }, []);
 
   const md = new MarkdownIt({ html: true });
 
-  return !postsFetched || postsError ? (
-    <PostsContainer></PostsContainer>
+  return !fetchedPost || fetchPostError ? (
+    <PostContainer />
   ) : (
-    <PostsContainer>
-      {posts.map((post, i) => {
-        return (
-          <PostContainer key={i}>
-            <Post>
-              {isAdmin ? PostButtons(post, dispatch) : undefined}
-              <Link to={`/blog/${post.id}`} style={{ textDecoration: 'none' }}>
-                <StyledTitle size="50px" margins="margin: 0px;" changeFontAt="700px" changeFontTo="30px">
-                  {post.title}
-                </StyledTitle>
-              </ Link>
-              <CreatedAt>Created on: {formatDate(post.time_stamp)}</CreatedAt>
-
-              <div
-                className="markdown-body"
-                dangerouslySetInnerHTML={{ __html: md.render(post.content) }}
-              />
-            </Post>
-          </PostContainer>
-        );
-      })}
-    </PostsContainer>
+    <PostWrapper>
+        <PostContainer >
+          <PostContent>
+            {isAdmin ? PostButtons(post, dispatch) : undefined}
+            <Title size="50px" margins="margin: 0px;" changeFontAt="700px" changeFontTo="30px">
+              {post.title}
+            </Title>
+            <CreatedAt> Created on: {formatDate(post.time_stamp)} </CreatedAt>
+            <div
+              className="markdown-body"
+              dangerouslySetInnerHTML={{ __html: md.render(post.content) }}
+            />
+          </PostContent>
+        </PostContainer>
+        </PostWrapper>
   );
 };
 
-export default Posts;
+export default Post;
