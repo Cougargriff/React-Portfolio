@@ -54,6 +54,7 @@ const EditorTitle = "Markdown Editor";
 
 const EditButtons = (props) => {
   const dispatch = useDispatch();
+  const isUpdating = useSelector((state) => state.PostsReducer.isUpdatingPost);
   return (
     <EditButtonContainer>
       {props.id ? (
@@ -66,14 +67,16 @@ const EditButtons = (props) => {
             color="#b19cd9"
             text="Update"
           />
-          <ColorButton
-            href="/blog"
-            color="#b19cd9"
-            text="Done"
-            onClick={() => {
-              dispatch(clearEditor());
-            }}
-          />
+          {!isUpdating ? (
+            <ColorButton
+              href="/blog"
+              color="#b19cd9"
+              text="Done"
+              onClick={() => {
+                dispatch(clearEditor());
+              }}
+            />
+          ) : undefined}
         </NColumnContent>
       ) : (
         <NColumnContent paddingLeft="0px">
