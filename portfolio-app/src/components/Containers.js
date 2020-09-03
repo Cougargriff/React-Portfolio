@@ -45,11 +45,13 @@ export const ThreeColumnContent = styled.div`
   display: flex;
   padding: 20px;
 `;
+
 export const NColumnContent = styled.div`
   display: flex-box;
-  padding: ${(props) => props.padding ? props.padding : "20px"};
-  ${(props) => props.padding ? `padding-left: ${props.paddingLeft};` : ""}
-  ${(props) => props.padding ? `padding-bottom: ${props.paddingBottom};` : ""}
+  padding: ${(props) => (props.padding ? props.padding : "20px")};
+  ${(props) => (props.paddingLeft ? `padding-left: ${props.paddingLeft};` : "")}
+  ${(props) =>
+    props.paddingBottom ? `padding-bottom: ${props.paddingBottom};` : ""}
 
   @media (max-width: ${(props) => (props.size ? props.size : "850px")}) {
     padding-top: 15px;
