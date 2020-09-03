@@ -8,12 +8,13 @@ import { NColumnContent } from "./Containers";
 import ColorButton from "./ColorButton";
 
 /* Must import for github md styling */
-import GithubStyle from "github-markdown-css"; 
+import GithubStyle from "github-markdown-css";
 
 const PostWrapper = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
+  padding-top: 50px;
 `;
 
 const PostContent = styled.div`
@@ -97,9 +98,11 @@ const PostButtons = (post, dispatch) => {
 const Post = (props) => {
   const dispatch = useDispatch();
   const isAdmin = useSelector((state) => state.EditorReducer.isAdmin);
-  const post = useSelector((state) => state.PostsReducer.selectedPost)
-  const fetchedPost = useSelector( state => state.PostsReducer.fetchedPost)
-  const fetchPostError = useSelector( state => state.PostsReducer.fetchPostError)
+  const post = useSelector((state) => state.PostsReducer.selectedPost);
+  const fetchedPost = useSelector((state) => state.PostsReducer.fetchedPost);
+  const fetchPostError = useSelector(
+    (state) => state.PostsReducer.fetchPostError
+  );
 
   useEffect(() => {
     // Run! Like go get some data from an API.
@@ -112,20 +115,25 @@ const Post = (props) => {
     <PostContainer />
   ) : (
     <PostWrapper>
-        <PostContainer >
-          <PostContent>
-            {isAdmin ? PostButtons(post, dispatch) : undefined}
-            <Title size="50px" margins="margin: 0px;" changeFontAt="700px" changeFontTo="30px">
-              {post.title}
-            </Title>
-            <CreatedAt> Created on: {formatDate(post.time_stamp)} </CreatedAt>
-            <div
-              className="markdown-body"
-              dangerouslySetInnerHTML={{ __html: md.render(post.content) }}
-            />
-          </PostContent>
-        </PostContainer>
-        </PostWrapper>
+      <PostContainer>
+        <PostContent>
+          {isAdmin ? PostButtons(post, dispatch) : undefined}
+          <Title
+            size="50px"
+            margins="margin: 0px;"
+            changeFontAt="700px"
+            changeFontTo="30px"
+          >
+            {post.title}
+          </Title>
+          <CreatedAt> Created on: {formatDate(post.time_stamp)} </CreatedAt>
+          <div
+            className="markdown-body"
+            dangerouslySetInnerHTML={{ __html: md.render(post.content) }}
+          />
+        </PostContent>
+      </PostContainer>
+    </PostWrapper>
   );
 };
 

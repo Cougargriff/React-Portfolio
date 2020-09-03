@@ -6,13 +6,16 @@ import {
   FETCH_POST_SUCCESS,
   FETCH_POST_FAILURE,
   UPDATE_POST_SUCCESS,
+  UPDATE_POST_FAILURE,
   CLEAR_EDIT_ID,
   CLEAR_SELECTED_POST,
+  UPDATE_POST_REQUEST,
 } from "../actions/Types";
 
 const initPostsState = {
   isFetchingPosts: false,
   fetchPostsError: false,
+  isUpdatingPost: false,
   fetchedPosts: false,
   posts: [],
   editingId: "",
@@ -38,6 +41,17 @@ const postsReducer = (state = initPostsState, action) => {
     case UPDATE_POST_SUCCESS:
       return {
         ...state,
+        isUpdatingPost: false,
+      };
+    case UPDATE_POST_FAILURE:
+      return {
+        ...state,
+        isUpdatingPost: false,
+      };
+    case UPDATE_POST_REQUEST:
+      return {
+        ...state,
+        isUpdatingPost: true,
       };
     case FETCH_POSTS_FAILURE:
       return {
@@ -58,7 +72,7 @@ const postsReducer = (state = initPostsState, action) => {
         isFetchingProjects: true,
         fetchPostsError: false,
       };
-      /* For updating single post */
+    /* For updating single post */
     case FETCH_POST_FAILURE:
       return {
         ...state,
