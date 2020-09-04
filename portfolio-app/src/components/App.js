@@ -3,7 +3,6 @@
 */
 import React from "react";
 import { useSelector } from 'react-redux'
-
 import {
   BrowserRouter as Router,
   Route
@@ -25,9 +24,14 @@ import {
   FourColumnContent,
   TopSection
 } from "./Containers"
+import ReactGA from 'react-ga';
 import Admin from "./Admin.js";
 
 
+const ga_id = "G-6J56746C0H";
+ReactGA.initialize(ga_id);
+ReactGA.set({
+})
 
 function NavButtons() {
   const isAdmin = useSelector((state) => state.EditorReducer.isAdmin);
@@ -123,10 +127,14 @@ function Main() {
   )
 }
 
+const onUpdate = () => {
+  ReactGA.set({ page: window.location.pathname })
+  ReactGA.pageview(window.location.pathname)
+}
 
 function App() {
   return (
-    <Router>
+    <Router onUpdate={onUpdate}>
         <Route exact path="/">
           <Main/>
         </Route>

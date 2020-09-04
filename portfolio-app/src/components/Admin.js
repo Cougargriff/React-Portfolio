@@ -5,6 +5,7 @@ import styled from "styled-components";
 import ColorButton from "./ColorButton";
 import { adminSignIn, adminSignOut } from "../store/actions/EditorActions";
 import { NColumnContent, TwoColumnContent } from "./Containers";
+import AdminPanel from "./AdminPanel"
 
 const EmailPasswordBoxContainer = styled.div`
   align-items: center;
@@ -119,14 +120,15 @@ const Admin = (props) => {
       <div>
         <NavButtons />
         <center>
-          <Title className="headers">You are an admin</Title>
+          <Title className="headers">Admin Panel</Title>
+          <AdminPanel />
         </center>
       </div>
     )
     : (
       <div>
         <PortfolioBack />
-        <Title className="headers">You are not an admin</Title>
+        <Title className="headers">Admin Sign In</Title>
         <SignInBoxes />
       </div>
     );
