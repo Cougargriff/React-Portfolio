@@ -28,11 +28,11 @@ const initPostsState = {
 const postsReducer = (state = initPostsState, action) => {
   switch (action.type) {
     /*
-            On each parsed action request type, the reducer will return the
-            new modified state. The spread operator '...' will return the insides of the old
-            state which we then append our corresponding changed state values to. Altogether returning
-            a new state object. 
-        */
+      On each parsed action request type, the reducer will return the
+      new modified state. The spread operator '...' will return the insides of the old
+      state which we then append our corresponding changed state values to. Altogether returning
+      a new state object. 
+    */
     case CLEAR_EDIT_ID:
       return {
         ...state,
@@ -80,7 +80,6 @@ const postsReducer = (state = initPostsState, action) => {
         fetchPostError: true,
       };
     case FETCH_POST_SUCCESS:
-      console.log(action.post);
       return {
         ...state,
         isFetchingPost: false,
