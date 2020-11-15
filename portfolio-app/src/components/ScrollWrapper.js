@@ -4,6 +4,8 @@ import About from "./About.js";
 import Resume from "./Resume.js";
 import styled from 'styled-components';
 import ColorButton from "./ColorButton";
+import Stats from './Stats.js';
+
 
 const TwoColumnContent = styled.div`
     display: grid;
@@ -52,6 +54,9 @@ const ScrollWrapper = () => {
       <FixedSection   id="about">
           <About/>
       </FixedSection>
+	  <FixedSection>
+		<Stats/>
+	  </FixedSection>
       <FixedSection   id="resume">
         <div>
           <Resume/>
