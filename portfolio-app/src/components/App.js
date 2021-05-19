@@ -52,12 +52,14 @@ function NavButtons() {
       href="#resume"
       color='#000080'
       text='Resume'
-      />
-      <ColorButton  
-      href="/blog"
-      color='#53DC98'
-      text='Blog'
-      />
+      /> 
+      {
+      // <ColorButton  
+      // href="/blog"
+      // color='#53DC98'
+      // text='Blog'
+      // />
+      }
       { isAdmin ? <ColorButton
           color='#779ECB'
           text="Admin"

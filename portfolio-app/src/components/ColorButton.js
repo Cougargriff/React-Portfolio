@@ -52,6 +52,7 @@ const Button = styled.a`
   text-decoration: none;
   background-color: ${(props) => shadeHexColor(props.color, 0.3)};
   transition-duration: 0.4s;
+  height: max-content;
 
   &:hover {
     background: transparent;

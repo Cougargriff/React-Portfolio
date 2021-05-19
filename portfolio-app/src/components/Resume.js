@@ -5,7 +5,7 @@ import ColorButton from './ColorButton';
 
 const StyledImage = styled.img`
     border-radius: 8px;
-    width: 1400px;
+    width: 1200px;
 
     @media (max-width: 1510px) {
         margin-left: 0px;
