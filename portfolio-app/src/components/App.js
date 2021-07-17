@@ -15,6 +15,7 @@ import mailto_logo from "../res/mailTo.svg"
 import { motion } from "framer-motion";
 import Home from "./Home";
 import Blog from "./Blog";
+import Comic from "./Comic";
 import Editor from "./Editor"
 import ColorButton from "./ColorButton";
 import "./Styling/App.css";
@@ -27,7 +28,6 @@ import {
 import ReactGA from 'react-ga';
 import Admin from "./Admin.js";
 
-
 const ga_id = "G-6J56746C0H";
 ReactGA.initialize(ga_id);
 ReactGA.set({
@@ -35,23 +35,29 @@ ReactGA.set({
 
 function NavButtons() {
   const isAdmin = useSelector((state) => state.EditorReducer.isAdmin);
+  const theme = useSelector((state) => state.ThemeReducer.theme);
 
   return (
     <FourColumnContent>
       <ColorButton  
       href="#projects"
-      color='#F18E33'
+      color={theme.color1}
       text='Projects'
       />
       <ColorButton  
       href="#about"
-      color='#FF0000'
+      color={theme.color2}
       text='About'
       />
       <ColorButton  
       href="#resume"
-      color='#000080'
+      color={theme.color3}
       text='Resume'
+      /> 
+      <ColorButton  
+      href="/xkcd-comic"
+      color={theme.color4}
+      text='Comic'
       /> 
       {
       // <ColorButton  
@@ -61,7 +67,7 @@ function NavButtons() {
       // />
       }
       { isAdmin ? <ColorButton
-          color='#779ECB'
+          color={theme.color5}
           text="Admin"
           href="/admin"
         /> : undefined }
@@ -135,6 +141,7 @@ const onUpdate = () => {
 }
 
 function App() {
+
   return (
     <Router onUpdate={onUpdate}>
         <Route exact path="/">
@@ -142,6 +149,7 @@ function App() {
         </Route>
         {/* optional id param for updating existing posts */}
         <Route path="/blog/:id?" component={Blog} />
+        <Route path="/xkcd-comic" component={Comic} />
         <Route path="/admin-editor/:id?" component={Editor} />
         <Route path="/admin">
           <Admin/>

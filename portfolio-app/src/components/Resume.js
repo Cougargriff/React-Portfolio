@@ -2,6 +2,7 @@ import resume from '../res/resume_curr-1.jpg';
 import React from 'react';
 import styled from 'styled-components';
 import ColorButton from './ColorButton';
+import { useSelector, useDispatch } from "react-redux";
 
 const StyledImage = styled.img`
     border-radius: 8px;
@@ -37,6 +38,7 @@ const TwoColumnContent = styled.div`
 /* TODO figure out lazy loading from github hosted resume */
 
 function Resume(props) {
+  const theme = useSelector((state) => state.ThemeReducer.theme);
     return (
         <div>    
         <TwoColumnContent>
@@ -45,7 +47,7 @@ function Resume(props) {
             }}>Resume</h1>
             <ColorButton 
             href="https://github.com/Cougargriff/ResumeLatex/raw/master/resume_curr.pdf"
-            color='#228B22'
+            color={theme.color5}
             text='Download'/>       
         </TwoColumnContent>
         <StyledImage src={resume}></StyledImage>

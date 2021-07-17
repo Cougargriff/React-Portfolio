@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Projects from "./Projects.js";
 import About from "./About.js";
 import Resume from "./Resume.js";
@@ -43,7 +44,8 @@ const ScrollWrapper = () => {
       </FooterContainer>
     )
   }
-
+  
+  const theme = useSelector((state) => state.ThemeReducer.theme);
   return (
     <div>
       <FixedSection  id="projects">
@@ -60,7 +62,7 @@ const ScrollWrapper = () => {
       <section>
         <TwoColumnContent>
           <ColorButton href='#top'
-          color='#ff6347'
+          color={theme.color1}
           text='Top'/>
           {contactInfo()}
           {tagLine()}
