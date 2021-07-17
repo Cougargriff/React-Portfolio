@@ -27,16 +27,17 @@ const StyledInput = styled.input`
 `;
 
 function PortfolioBack () {
+  const theme = useSelector((state) => state.ThemeReducer.theme);
   return (
     <TopBar>
         <NColumnContent>
           <ColorButton
-            color="#F18E33"
+            color={theme.color1}
             text="Portfolio"
             href="/"
           />
           <ColorButton
-            color="#53DC98"
+            color={theme.color2}
             text="Blog"
             href="/blog"
           />
@@ -47,28 +48,29 @@ function PortfolioBack () {
 
 function NavButtons() {
   const dispatch = useDispatch();
+  const theme = useSelector((state) => state.ThemeReducer.theme);
   return (
     <TopBar>
       <TwoColumnContent>
         <NColumnContent>
           <ColorButton
-            color="#F18E33"
+            color={theme.color1}
             text="Portfolio"
             href="/"
           />
           <ColorButton
-            color="#53DC98"
+            color={theme.color2}
             text="Blog"
             href="/blog"
           />
           <ColorButton
-            color="#779ECB"
+            color={theme.color3}
             text="Editor"
             href="/admin-editor"
           />
         </NColumnContent>
         <ColorButton
-          color="#FF0000"
+          color={theme.color4}
           text="Sign Out"
           onClick={() => {
             dispatch(adminSignOut());
@@ -83,6 +85,7 @@ const SignInBoxes = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const theme = useSelector((state) => state.ThemeReducer.theme);
 
   return (
     <center>
@@ -101,7 +104,7 @@ const SignInBoxes = () => {
           }}
         />
         <ColorButton
-          color="#228B22"
+          color={theme.color5}
           text="Sign In"
           onClick={() => {
             dispatch(adminSignIn(email, password));
