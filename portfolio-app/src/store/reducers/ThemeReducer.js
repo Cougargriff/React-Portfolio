@@ -3,12 +3,12 @@ import {
     UPDATE_THEME,
     FETCH_THEMES
 } from "../actions/Types";
-import Defaults from '../../components/Styling/defaults.js';
+import themes from '../../components/Styling/themes.js';
 
 const initProjectState = {
-    themes: Defaults.themes,
+    themes: themes,
     selected: 'default',
-    theme: Defaults.themes['default']
+    theme: themes['default']
 };
 
 const themeReducer = (state = initProjectState, action) => {
@@ -26,6 +26,8 @@ const themeReducer = (state = initProjectState, action) => {
     case CHANGE_THEME:
       return {
         ...state,
+        selected: action.newTheme || initProjectState.selected,
+        theme: themes[action.newTheme] || initProjectState.theme,
       };
     case UPDATE_THEME:
       return {

@@ -18,6 +18,13 @@ const fetchThemes = () => {
   }
 }
 
+const changeTheme = (newTheme) => {
+    return {
+        type: CHANGE_THEME,
+        newTheme
+    }
+}
+
 /* 
     Action creator function to call from component class
     to dispatch recieved projects action after async api call.
@@ -29,6 +36,10 @@ const fetchThemes = () => {
 //
 export const getThemes = () => (dispatch) => {
     dispatch(fetchThemes());
+};
+
+export const swapTheme = (newTheme) => (dispatch) => {
+    dispatch(changeTheme(newTheme));
 };
 
 // export const setEditorText = (text) => async (dispatch) => {

@@ -1,7 +1,7 @@
 /*
   Main Workspace for App
 */
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from 'react-redux'
 import {
   BrowserRouter as Router,
@@ -11,6 +11,7 @@ import Thumbnail from "./Thumbnail.js";
 import ScrollWrapper from "./ScrollWrapper";
 import github_logo from "../res/github_logo.svg";
 import linked_logo from "../res/linkedin_logo.svg";
+import gear from "../res/gear.svg";
 import mailto_logo from "../res/mailTo.svg"
 import { motion } from "framer-motion";
 import Home from "./Home";
@@ -18,11 +19,14 @@ import Blog from "./Blog";
 import Comic from "./Comic";
 import Editor from "./Editor"
 import ColorButton from "./ColorButton";
+import ThemeModal from "./ThemeModal";
+import styled from 'styled-components';
 import "./Styling/App.css";
 import {
   TwoColumnContent,
   ThreeColumnContent,
   FourColumnContent,
+  NColumnContent,
   TopSection
 } from "./Containers"
 import ReactGA from 'react-ga';
@@ -32,6 +36,8 @@ const ga_id = "G-6J56746C0H";
 ReactGA.initialize(ga_id);
 ReactGA.set({
 })
+
+
 
 function NavButtons() {
   const isAdmin = useSelector((state) => state.EditorReducer.isAdmin);
@@ -75,11 +81,31 @@ function NavButtons() {
   );
 }
 
+
+
+
+const onUpdate = () => {
+  ReactGA.set({ page: window.location.pathname })
+  ReactGA.pageview(window.location.pathname)
+}
+
+function App() {
+
+
+  const [showSettings, toggleSettings] = useState(false);
+  
+function SettingsModal() {
+    return (
+        <ThemeModal visible={showSettings} />
+    );
+}
+
 function NavBar() {
+  
   return (
         <TwoColumnContent>
           <NavButtons/>
-            <ThreeColumnContent>
+            <FourColumnContent>
             <motion.div
               className="container"
               whileHover={{ scale: 1.2, rotate: 0 }}
@@ -118,29 +144,37 @@ function NavBar() {
                 category="MailTo"
               />
             </motion.div>
-            </ThreeColumnContent>
+            <motion.div
+              className="container"
+              whileHover={{ scale: 1.2, rotate: 0 }}
+              whileTap={{ scale: 0.8, rotate: 0, borderRadius: "100%" }}
+            >
+              <Thumbnail
+                link="javascript:void(0);"
+                image={gear}
+                title="Settings"
+                category="Settings"
+                onClick={() => { toggleSettings(!showSettings) }}
+              />
+            </motion.div>
+            </FourColumnContent>
           </TwoColumnContent>
   )
 }
 
 function Main() {
+
   return (
     <div className="App">
       <TopSection id="top">
-        <NavBar/>
+        <NavBar />
+        <SettingsModal />
         <Home/>
       </TopSection>
       <ScrollWrapper />
     </div>
   )
 }
-
-const onUpdate = () => {
-  ReactGA.set({ page: window.location.pathname })
-  ReactGA.pageview(window.location.pathname)
-}
-
-function App() {
 
   return (
     <Router onUpdate={onUpdate}>

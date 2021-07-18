@@ -7,10 +7,12 @@ const PaddedDiv = styled.div`
 `
 
 function Thumbnail(props) {
+  const onClick = props.onClick;
+  
   return (
     <PaddedDiv>
         <div>
-            <a href={props.link}>
+            <a href={props.link} onClick={onClick}>
                 <img src={props.image} alt="Project Image" width="50" />
             </a>
         </div>
