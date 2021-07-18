@@ -19,6 +19,11 @@ const ShadowBuffer = styled.div`
     width: 100%;
     height: 100%;
     margin: 20px;
+
+    @media (max-width: 850px) {
+        margin: 0px;
+        overflow: hidden;
+    }
 `;
 
 const ModalWrapper = styled.div`
@@ -31,10 +36,13 @@ const ModalWrapper = styled.div`
     overflow-y: visible;
 
     @media (max-width: 850px) {
-        top: 190px;
-        right: 50%;
-        transform: translate(315px, 0px);
-        width: 285px;
+        top: 70%;
+        bottom: 0px;
+        left: -44%;
+        width: 94%;
+        position: fixed;
+        z-index: 999;
+        transform: translate(50%, 0);
     }
 
 `;
@@ -51,6 +59,12 @@ const Modal = styled.div`
     -webkit-box-shadow: 0px 1px 35px -14px rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 0px 1px 35px -14px rgba(0, 0, 0, 0.4);
     box-shadow: 0px 1px 35px -14px rgba(0, 0, 0, 0.4);
+    
+    @media (max-width: 850px) {
+    -webkit-box-shadow: ;
+    -moz-box-shadow: ;
+    box-shadow: ;
+    }
 `;
 
 const ModalTop = styled.div`
@@ -65,12 +79,7 @@ const ModalTop = styled.div`
     z-index: 20;
     
     @media (max-width: 850px) {
-        background: white;
-        float: left;
-        transform: rotate(135deg);
-        margin-right: 0px;
-        margin-left: -4px;
-        margin-top: 0px;
+        visibility: hidden;
     }
 `;
 
