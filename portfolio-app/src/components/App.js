@@ -66,11 +66,11 @@ function NavButtons() {
       text='Comic'
       /> 
       {
-      // <ColorButton  
-      // href="/blog"
-      // color='#53DC98'
-      // text='Blog'
-      // />
+      <ColorButton  
+      href="/blog"
+      color='#53DC98'
+      text='Blog'
+      />
       }
       { isAdmin ? <ColorButton
           color={theme.color5}
