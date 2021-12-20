@@ -126,7 +126,7 @@ const Post = (props) => {
           >
             {post.title}
           </Title>
-          <CreatedAt> Created on: {formatDate(post.time_stamp)} </CreatedAt>
+          <CreatedAt> Created on: {formatDate(post.time)} </CreatedAt>
           <div
             className="markdown-body"
             dangerouslySetInnerHTML={{ __html: md.render(post.content) }}

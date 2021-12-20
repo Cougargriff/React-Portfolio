@@ -126,7 +126,7 @@ const clearEditId = () => {
   }
 }
 
-const POSTS_URL = "https://deno-blog-api.herokuapp.com/posts";
+const POSTS_URL = "https://super-blog-api.herokuapp.com/posts";
 
 
 /* 
@@ -135,12 +135,22 @@ const POSTS_URL = "https://deno-blog-api.herokuapp.com/posts";
 */
 
 const getPosts = async () => {
-  return await fetch(POSTS_URL)
+    return await fetch(POSTS_URL, {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
+        }
+    })
   .then(res => res.json())
 }
 
 const getPost = async (id) => {
-  return await fetch(POSTS_URL + `/${id}`)
+    return await fetch(POSTS_URL + `/${id}`, {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
+        }
+    })
   .then(res => res.json())
 }
 
@@ -150,7 +160,12 @@ const makePost = async (post) => {
   params.append('content', post.content);
   return axios.post(POSTS_URL,
     params,
-    { headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
+    { headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Access-Control-Allow-Origin': '*'
+
+        }
+    }
   )
 }
 
@@ -164,7 +179,12 @@ const editPost = async (post) => {
   params.append('content', post.content);
   return axios.put(POSTS_URL + `/${post.id}`,
     params,
-    { headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
+    { headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Access-Control-Allow-Origin': '*'
+
+        }
+    }
   )
 }
 export const clearEditing = (id) => async (dispatch) => { 

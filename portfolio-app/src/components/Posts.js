@@ -72,10 +72,8 @@ const formatDate = (time_stamp) => {
     day: "2-digit",
   });
   const [
-    { value: month },
-    ,
-    { value: day },
-    ,
+    { value: month },,
+    { value: day },,
     { value: year },
   ] = dateTimeFormat.formatToParts(date);
 
@@ -136,7 +134,7 @@ const Posts = (props) => {
                   {post.title}
                 </StyledTitle>
               </ Link>
-              <CreatedAt>Created on: {formatDate(post.time_stamp)}</CreatedAt>
+              <CreatedAt>Created on: {formatDate(post.time)}</CreatedAt>
 
               <div
                 className="markdown-body"
