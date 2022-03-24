@@ -75,7 +75,7 @@ function title() {
 }
 
 function languageDot(lang) {
-  return <Dot color={colors[lang].color} />;
+  return <Dot color={colors[lang] ? colors[lang].color : ''} />;
 }
 
 function languages(langs) {
