@@ -126,7 +126,7 @@ const clearEditId = () => {
   }
 }
 
-const POSTS_URL = "https://super-blog-api.herokuapp.com/posts";
+const POSTS_URL = "https://fp-blog-api.herokuapp.com/api/v1/posts";
 
 
 /* 
