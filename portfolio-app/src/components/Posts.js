@@ -122,7 +122,7 @@ const Posts = (props) => {
                   {post.title}
                 </StyledTitle>
               </ Link>
-              <CreatedAt>Created on: {formatDate(post.time)}</CreatedAt>
+              <CreatedAt>Created on: {formatDate(post.time_stamp)}</CreatedAt>
 
               <div
                 className="markdown-body"
