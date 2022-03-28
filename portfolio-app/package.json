@@ -10,7 +10,7 @@
     "firebase": "^7.19.0",
     "framer-motion": "^1.11.0",
     "github-markdown-css": "^4.0.0",
-    "markdown-it": "^11.0.0",
+    "markdown-it": "^12.3.2",
     "react": "^16.13.1",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-dom": "^16.13.1",
