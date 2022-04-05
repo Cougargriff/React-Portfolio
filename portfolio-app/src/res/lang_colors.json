@@ -1,7 +1,12 @@
 {
+<<<<<<< HEAD
     "Procfile" : {
         "color": "#3B2F63",
         "url": "https://github.com/trending?l=Procfile"
+=======
+    "Procfile": {
+        "color": "#6567A5"
+>>>>>>> 254a32f (show blog)
     },
     "1C Enterprise": {
         "color": "#814CCC",

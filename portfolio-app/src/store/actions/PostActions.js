@@ -256,7 +256,7 @@ export const fetchPost = (id) => async (dispatch) => {
   dispatch(requestPost());
   try {
     let post = await getPost(id);
-    dispatch(receivePost(post.id, post));
+    dispatch(receivePost(post.id.toString(), post));
     dispatch(setEditorText(post.content))
     dispatch(setEditorTitle(post.title))
   } catch (error) {

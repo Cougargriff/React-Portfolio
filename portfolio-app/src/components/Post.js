@@ -53,22 +53,8 @@ const PostContainer = styled.div`
 `;
 
 const formatDate = (time_stamp) => {
-  const date = new Date(time_stamp);
-  return date;
-//   const dateTimeFormat = new Intl.DateTimeFormat("en", {
-//     year: "numeric",
-//     month: "short",
-//     day: "2-digit",
-//   });
-//   const [
-//     { value: month },
-//     ,
-//     { value: day },
-//     ,
-//     { value: year },
-//   ] = dateTimeFormat.formatToParts(date);
-
-//   return `${day}-${month}-${year}`;
+   const date = new Date(time_stamp);
+   return 'FIX THIS';
 };
 
 const PostButtons = (post, dispatch) => {
@@ -130,7 +116,7 @@ const Post = (props) => {
           <CreatedAt> Created on: {formatDate(post.time_stamp)} </CreatedAt>
           <div
             className="markdown-body"
-            dangerouslySetInnerHTML={{ __html: md.render(post.content) }}
+            dangerouslySetInnerHTML={{ __html: md.render(post.content) || '' }}
           />
         </PostContent>
       </PostContainer>
